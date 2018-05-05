@@ -6,31 +6,34 @@
     <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <style type='text/css'>
+        .ui-header {
+            background: greenyellow;
+        }
+    </style>
 </head>
 
 <body>
     <div data-role="page" id="main">
-        <div data-role="header">
+        <div data-role="header" data-theme="b">
             <h1> </h1>
             <a href="#" data-icon="bars" data-iconpos="notext" background-size: 36px 36px></a>
         </div>
     
-        <div data-role="content" class="ui-content">
-            <ul data-role="listview" data-inset="true">
+        <div data-role="navbar">
+            <ul>
                 <li>
-                    <a href="#busboard">
-                        <img src="bus.png">버스가 필요해요!!</a>
+                    <a href="#busboard" class="ui-btn-active">버스가 필요</a>
                 </li>
                 <li>
-                    <a href="#workboard">
-                        <img src="building.jpg">일자리가 필요해요!!</a>
+                    <a href="#workboard">일자리 필요</a>
                 </li>
             </ul>
         </div>
     </div>
     
     <div data-role="page" id="busboard">
-        <div data-role="header">
+        <div data-role="header" data-theme="b">
             <h1> </h1>
             <a href="#" data-icon="bars" data-iconpos="notext" background-size: 36px 36px></a>
         </div>
@@ -49,7 +52,7 @@
     </div>
     
     <div data-role="page" id="workboard">
-        <div data-role="header">
+        <div data-role="header" data-theme="b">
             <h1> </h1>
             <a href="#" data-icon="bars" data-iconpos="notext" background-size: 36px 36px></a>
         </div>
