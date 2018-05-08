@@ -10,6 +10,14 @@
         .ui-header {
             background: greenyellow;
         }
+        .ui-icon-bars {
+            background-size: 32px;
+            width:32px;
+            height: 32px;
+        }
+        .ui-btn {
+            background: skyblue;
+        }
     </style>
 </head>
 
@@ -17,16 +25,16 @@
     <div data-role="page" id="main">
         <div data-role="header" data-theme="b">
             <h1> </h1>
-            <a href="#" data-icon="bars" data-iconpos="notext" background-size: 36px 36px></a>
+            <a href="#" data-icon="bars" data-iconpos="notext" ></a>
         </div>
     
         <div data-role="navbar">
             <ul>
                 <li>
-                    <a href="#busboard" class="ui-btn-active">버스가 필요</a>
+                    <a href="#busboard" class="ui-btn">버스가 필요</a>
                 </li>
                 <li>
-                    <a href="#workboard">일자리 필요</a>
+                    <a href="#workboard" class="ui-btn">일자리 필요</a>
                 </li>
             </ul>
         </div>
