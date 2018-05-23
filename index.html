@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -6,15 +7,39 @@
     <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script language="javascript">
+        // var obj = new Object();
+        // obj.num = 1234;
+        // var jsonData = JSON.stringify(obj);    
+
+        $(document).ready(function() {
+            $("#getBusBoard").click(function() {
+                $.ajax({
+                    contentType: "application/json",
+                    type: "POST",
+                    dataType: "json",
+                    url: "https://busyawrite.azurewebsites.net/api/select?num=5379",
+                    success: function (data) {                        
+                        $.each(JSON.parse(data), function (index, item) {
+                            console.log(index + ":" + item);
+                            // alert(data['num'] + ":" + data['name']);
+                        })
+                    }
+                });
+            })
+        })
+    </script>
     <style type='text/css'>
         .ui-header {
             background: white;
             height: 40px;
         }
+
         .ui-btn {
             background: skyblue;
             height: 30%;
         }
+
         .ui-icon-bars {
             background: white;
             background-size: 28px;
@@ -27,32 +52,37 @@
 <body>
     <div data-role="page" id="main">
         <div data-role="header" data-theme="a">
-            <h1> 버스야 </h1>                    
-            <a href="#" class="ui-btn ui-shadow ui-corner-all ui-nodisc-icon ui-alt-icon ui-icon-bars ui-btn-icon-notext ui-btn-inline"></a>       
+            <h1> 버스야 </h1>
+            <a href="#" class="ui-btn ui-shadow ui-corner-all ui-nodisc-icon ui-alt-icon ui-icon-bars ui-btn-icon-notext ui-btn-inline"></a>
         </div>
-    
-        <div data-role="content" class="ui-content" style="background: white;">           
-            <a href="#busboard" data-role="button" style="height: 150px; font: 14px Calibri,Arial;">
-                <br/><br/><br/>버스가 필요해요!!</a>
+
+        <div data-role="content" class="ui-content" style="background: white;">
+            <a href="#busboard" id="getBusBoard" data-role="button" style="height: 150px; font: 14px Calibri,Arial;">
+                <br/>
+                <br/>
+                <br/>버스가 필요해요!!</a>
             <a href="#workboard" data-role="button" style="height: 150px; font: 14px Calibri,Arial;">
-                <br/><br/><br/>일자리가 필요해요!!</a>              
+                <br/>
+                <br/>
+                <br/>일자리가 필요해요!!</a>
         </div>
     </div>
-    
+
     <div data-role="page" id="busboard">
         <div data-role="header" data-theme="a">
             <h1> </h1>
             <a href="#" class="ui-btn ui-shadow ui-corner-all ui-nodisc-icon ui-alt-icon ui-icon-bars ui-btn-icon-notext ui-btn-inline"></a>
         </div>
         <div data-role="content" class="ui-content">
-            <script lang="javascript">
-                for(i=1;i<=10;i++) {
-                    document.write('<a href="#" data-role="button" style="height: 100px; font: 15px Calibri, Arial;">버스' + i + '</a>');
+            <script lang="javascript">   
+                
+                for (i = 1; i <= 10; i++) {
+                    document.write('<a href="#boardpage" data-transition="slideup" data-role="button" style="height: 100px; font: 15px Calibri, Arial;">버스' + i + '</a>');
                 }
-            </script>            
+            </script>
         </div>
     </div>
-    
+
     <div data-role="page" id="workboard">
         <div data-role="header" data-theme="a">
             <h1> </h1>
@@ -61,12 +91,29 @@
         <div data-role="content" class="ui-content">
             <script lang="javascript">
                 for (i = 1; i <= 10; i++) {
-                    document.write('<a href="#" data-role="button" style="height: 100px; font: 15px Calibri, Arial;">유치원' + i + '</a>');
+                    document.write('<a href="#boardpage" data-transition="pop" data-role="button" style="height: 100px; font: 15px Calibri, Arial;">유치원' + i + '</a>');
                 }
-            </script>        
+            </script>
         </div>
     </div>
 
-</body>
+    <div data-role="page" id="boardpage" data-dialog="true">
+        <!-- <div data-role="header" data-theme="a">
+            <script language="javascript">
 
+            </script>
+            <a href="#" class="ui-btn ui-shadow ui-corner-all ui-nodisc-icon ui-alt-icon ui-icon-bars ui-btn-icon-notext ui-btn-inline"></a>
+        </div> -->
+        <div data-role="content">
+            <div class="ui-corner-all custom-corners">
+                <div class="ui-bar ui-bar-a">
+                    <h3>Heading</h3>
+                </div>
+                <div class="ui-body ui-body-a">
+                    <p>Content</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
 </html>

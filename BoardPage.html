@@ -8,15 +8,22 @@
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <script language="javascript">
         var obj = new Object();
-        obj.num = 1234;
-        var jsonData = JSON.stringify(obj);    
+        obj.num = 4350;
+        var jsonData = JSON.stringify(obj);
+        var num = 4350;    
 
         $.ajax({
             contentType: "application/json",
             type: "POST",
             dataType: "json",
             url: "https://busyawrite.azurewebsites.net/api/select",
-            data: jsonData
+            data: jsonData,
+            success: function(data) {
+                alert(data['num'] + ":" + data['name']);
+                $.each(data, function (index, item) {
+                    
+                })
+            }
         });    
     </script>
 </head>
