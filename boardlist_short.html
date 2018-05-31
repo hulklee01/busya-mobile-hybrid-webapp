@@ -8,6 +8,22 @@
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <script src="js/callkakaoid.js"></script>
+    <script lang="js">
+        $(document).ready(function () {
+            $("a[id=submit-short]").click(function (e) {
+                $.ajax({
+                    type: "POST",
+                    url: "https://busyawrite.azurewebsites.net/api/short/insert",
+                    data: formData,
+                    success: function () { 
+                        
+                    },
+                    dataType: "json",
+                    contentType: "application/json"
+                });
+        });
+    });
+    </script>
 </head>
 
 <body>
@@ -17,7 +33,7 @@
         </div>
         <div data-role="content" class="ui-content" style="background: white;">
             <script lang="js">
-                for(i = 0; i < 10; i++) {
+                for (i = 0; i < 10; i++) {
                     document.write('<a href="#boardpage" data-transition="slideup" data-role="button" style="height: 100px; font: 15px Calibri, Arial;">버스' + i + '</a>');
                 }    
             </script>
