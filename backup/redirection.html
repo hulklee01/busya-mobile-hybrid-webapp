@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>.....</title>
+    <meta name="viewport" content="width = device-width, initial-scale = 1">
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="js/getparam.js"></script>    
+    <script lang="js"> 
+        $(document).ready(function () {
+            var url = 'https://busyawrite.azurewebsites.net/api/userinfo/checkuser?code=aeYpCr1mCFIazVjfQKMUlmwBSZnM9e0ZGrrTeonfiA6WagnajeXFHA==&kakaoid='+kakaoid;
+            $.ajax({
+                contentType: "application/json",
+                type: "POST",
+                global: true,
+                dataType: "json",
+                url: url,
+                success: function (data) {
+                    if (data.auth == "") {
+                        window.location = "./register_user.html?kakaoid="+kakaoid;
+                    } else if(data.auth == "driver") {
+                        window.location = "./boardlist_short.html?kakaoid="+kakaoid;
+                    } else if(data.auth == "teacher") {
+                        window.location = "./insert_short.html?kakaoid="+kakaoid;
+                    } else {
+                        window.location = "관리자 페이지";
+                    }
+                }
+            });
+        });        
+    </script>
+</head>
+<body>
+</body>
