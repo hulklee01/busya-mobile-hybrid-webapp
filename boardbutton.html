@@ -1,0 +1,15 @@
+<script>
+    $.ajax({
+        type: "POST",
+        async: false,
+        url: "https://busyawrite.azurewebsites.net/api/short/select?num=1",
+        data: json,
+        success: function (data) {
+            $.each(JSON.parse(data), function (index, item) {
+                document.write('<a href=#>'+item.name+'</a>');
+            })
+        },
+        dataType: "json",
+        contentType: "application/json"
+    });
+</script>

@@ -9,34 +9,47 @@
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <script src="js/callkakaoid.js"></script>
     <script lang="js">
+        var json = "";
+        // $(document).ready(function () {
+        //     $.ajax({
+        //         type: "POST",
+        //         async: false,
+        //         url: "https://busyawrite.azurewebsites.net/api/short/select?num=1",
+        //         data: json,
+        //         success: function (data) {
+        //             json = data;
+        //         },
+        //         dataType: "json",
+        //         contentType: "application/json"
+        //     });
+        // });
         $(document).ready(function () {
-            $("a[id=submit-short]").click(function (e) {
-                $.ajax({
-                    type: "POST",
-                    url: "https://busyawrite.azurewebsites.net/api/short/insert",
-                    data: formData,
-                    success: function () { 
-                        
-                    },
-                    dataType: "json",
-                    contentType: "application/json"
-                });
+            $.ajax({
+                type: "POST",
+                async: false,
+                url: "boardbutton.html",
+                data: json,
+                success: function (data) {
+                    $.each(JSON.parse(data), function (index, item) {
+                        $('#boardlist').html(item);
+                    })
+                },
+                dataType: "json",
+                contentType: "application/json"
+            });
         });
-    });
     </script>
 </head>
 
 <body>
     <div data-role="page" id="main">
-        <div data-role="header" data-theme="a" style="background-color: blue">
+        <div data-role="header" data-theme="a" style="background-color: rgb(58, 58, 190)">
             <h1>버스야</h1>
         </div>
-        <div data-role="content" class="ui-content" style="background: white;">
-            <script lang="js">
-                for (i = 0; i < 10; i++) {
-                    document.write('<a href="#boardpage" data-transition="slideup" data-role="button" style="height: 100px; font: 15px Calibri, Arial;">버스' + i + '</a>');
-                }    
-            </script>
+        <div data-role="content" id="boardlist" class="ui-content" style="background: white;">
+
         </div>
     </div>
+
+    <div data-role="page" id=""></div>
 </body>
