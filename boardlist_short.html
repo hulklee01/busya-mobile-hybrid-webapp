@@ -9,33 +9,14 @@
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <script src="js/callkakaoid.js"></script>
     <script lang="js">
-        var json = "";
-        // $(document).ready(function () {
-        //     $.ajax({
-        //         type: "POST",
-        //         async: false,
-        //         url: "https://busyawrite.azurewebsites.net/api/short/select?num=1",
-        //         data: json,
-        //         success: function (data) {
-        //             json = data;
-        //         },
-        //         dataType: "json",
-        //         contentType: "application/json"
-        //     });
-        // });
-        $(document).ready(function () {
-            $.ajax({
-                type: "GET",
-                url: "boardbutton.html",
-                data: json,
-                success: function (data) {
-                    $.each(JSON.parse(data), function (index, item) {
-                        $('#boardlist').html(item);
-                    })
-                },
-                dataType: "json",
-                contentType: "application/json"
-            });
+        var json = $.ajax({
+            type: "POST",
+            async: false,
+            url: "https://busyawrite.azurewebsites.net/api/short/select?num=1",
+            data: json,
+            success: function () {},
+            dataType: "json",
+            contentType: "application/json"
         });
     </script>
 </head>
@@ -46,9 +27,12 @@
             <h1>버스야</h1>
         </div>
         <div data-role="content" id="boardlist" class="ui-content" style="background: white;">
-
+            <script lang="js">
+                json = JSON.parse(json.responseJSON);
+                Object.keys(json).forEach(function (k) {
+                    document.write('<a href="#" data-role="button">날짜 : '+json[k].date+'<br>목적지 : '+json[k].dest+'<br>'+json[k].car+'인승<br>'+json[k].price+'원</a>');
+                });                
+            </script>
         </div>
     </div>
-
-    <div data-role="page" id=""></div>
 </body>
