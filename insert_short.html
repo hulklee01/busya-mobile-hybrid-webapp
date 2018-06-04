@@ -21,7 +21,9 @@
 <body>
     <div data-role="page" id="main">
         <div data-role="header" data-theme="a" style="background-color: blue">
-            <h1>버스야</h1>
+            <h1>
+                <img src="image/bus-side.png" style="height: 3em;">
+            </h1>
         </div>
         <div data-role="content" class="ui-content" style="background: white;">
             <div class="ui-field-contain">
@@ -31,7 +33,7 @@
                     <br>
                     <label for="car">차량</label>
                     <select name="car" id="car" data-mini="true">
-                        <option value="">선택해주세요</option>
+                        <option value="" data-placeholder="true">선택해주세요</option>
                         <option value="9">9인승</option>
                         <option value="12">12인승</option>
                         <option value="25">25인승</option>
