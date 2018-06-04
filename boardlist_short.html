@@ -23,14 +23,14 @@
 
 <body>
     <div data-role="page" id="main">
-        <div data-role="header" data-theme="a" style="background-color: rgb(58, 58, 190)">
-            <h1>버스야</h1>
+        <div data-role="header" data-theme="c" style="text-align: center; height: 70px; background-color: white;" data-tap-toggle="false" data-position="inline">
+            <h1><img src="image/bus-side.png" style="height: 3em;"></h1>
         </div>
-        <div data-role="content" id="boardlist" class="ui-content" style="background: white;">
+        <div data-role="content" id="boardlist" class="ui-content">
             <script lang="js">
                 json = JSON.parse(json.responseJSON);
                 Object.keys(json).forEach(function (k) {
-                    document.write('<a href="#" data-role="button">날짜 : '+json[k].date+'<br>목적지 : '+json[k].dest+'<br>'+json[k].car+'인승<br>'+json[k].price+'원</a>');
+                    document.write('<a href="#" data-role="button" style="background-color: white;" >날짜 : '+json[k].date+'<br>목적지 : '+json[k].dest+'<br>'+json[k].car+'인승<br>'+json[k].price+'원</a>');
                 });                
             </script>
         </div>
