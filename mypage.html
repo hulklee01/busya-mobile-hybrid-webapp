@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+
+<head>
+    <meta charset="UTF-8" />
+    <title>.....</title>
+    <meta name="viewport" content="width = device-width, initial-scale = 1">
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script lang="js">
+        var json = $.ajax({
+            type: "POST",
+            async: false,
+            url: "https://busyawrite.azurewebsites.net/api/short/select?num=1",
+            data: json,
+            success: function () {},
+            dataType: "json",
+            contentType: "application/json"
+        });
+    </script>
+</head>
+
+<body>
+    <div data-role="page" id="updateinfo">
+        <div data-role="header" data-position="fixed" data-theme="b">
+            <h1>BUSYA</h1>
+        </div>
+        <div data-role="content" class="ui-content" style="background: white;">
+
+        </div>
+    </div>
+
+    <div data-role="page" id="regular">
+        <div data-role="header" data-position="fixed" data-theme="b">
+            <h1>내 배차목록</h1>
+        </div>
+        <div data-role="content" class="ui-content" style="background: white;">
+
+        </div>
+    </div>
+
+    <div data-role="page" id="once">
+        <div data-role="header" data-position="fixed" data-theme="b">
+            <h1>단일 배차</h1>
+        </div>
+        <div data-role="content" class="ui-content" style="background: white;">
+            <script lang="js">
+                json = JSON.parse(json.responseJSON);
+                Object.keys(json).forEach(function (k) {
+                    document.write('<li><a href="#"><h2>' + json[k].dest + '</h2>' +
+                        '<p class="topic"><strong>' + json[k].car + ' 인승</strong></p>' +
+                        '<p><strong>' + json[k].date + '</strong></p>' +
+                        '<p class="ui-li-aside"><br><br><strong>￦ ' + json[k].price +
+                        '</strong></p></a>' +
+                        '<a href="#" class="delete"></a>');
+                });
+            </script>
+        </div>
+    </div>
+</body>

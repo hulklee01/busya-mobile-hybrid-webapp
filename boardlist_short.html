@@ -8,9 +8,6 @@
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <script src="js/callkakaoid.js"></script>
-    <script src="js/list.js"></script>
-    <link rel="stylesheet" href="css/list.css">
-    </style>
     <script lang="js">
         var json = $.ajax({
             type: "POST",
@@ -23,86 +20,52 @@
         });
 
         $(document).on("pageinit", "#main", function () {    
-            $(document).on("swipeleft swiperight", "#main", function (e) {        
+            $(document).on("swiperight", "#main", function (e) {        
                 // We check if there is no open panel on the page because otherwise        
                 // a swipe to close the left panel would also open the right panel(and v.v.).         
                 // We do this by checking the data that the framework stores on the pageelement(panel: open).        
                 if ($.mobile.activePage.jqmData("panel") !== "open") {            
-                    if (e.type === "swipeleft") {                
-                        $("#right-panel").panel("open");            
-                    } else if (e.type === "swiperight") {                
+                    if (e.type === "swiperight") {                
                         $("#mypanel").panel("open");            
-                    }        
+                    }       
                 }    
             });
         });
     </script>
     <style>
-        /* Swipe works with mouse as well but often causes text selection. */
-
-        #demo-page * {
+        #main * {
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
             -o-user-select: none;
             user-select: none;
         }
-
-        /* Arrow only buttons in the header.*/
-
-        #demo-page .ui-header .ui-btn {
-            background: none;
-            border: none;
-            top: 9px;
-        }
-
-        #demo-page .ui-header .ui-btn-inner {
-            border: none;
-        }
-
-        /* Content styling. */
-
-        dl {
-            font-family: "Times New Roman", Times, serif;
-            padding: 1em;
-        }
-
-        dt {
-            font-size: 2em;
-            font-weight: bold;
-        }
-
-        dt span {
-            font-size: .5em;
-            color: #777;
-            margin-left: .5em;
-        }
-
-        dd {
-            font-size: 1.25em;
-            margin: 1em 0 0;
-            padding-bottom: 1em;
-            border-bottom: 1px solid #eee;
-        }
-
-        .back-btn {
-            float: right;
-            margin: 0 2em 1em 0;
-        }
     </style>
 </head>
 
 <body>
-<div data-role="page" id="main">
+    <div data-role="page" id="main">
         <div data-role="panel" id="mypanel" data-display="overlay">
             <div data-role="header" data-theme="a">
                 <h1>마이 페이지</h1>
             </div>
+            <div data-role="content" data-theme="a">
+                <ul data-role="listview">
+                    <li>
+                        <a href="#updateinfo">개인정보 수정</a>
+                    </li>
+                    <li>
+                        <a href="#regular">내 배차목록</a>
+                    </li>
+                    <li>
+                        <a href="#once">단일 배차</a>
+                    </li>
+                </ul>
+            </div>
         </div>
         <div data-role="header" data-position="fixed" data-theme="b">
             <h1>BUSYA</h1>
-            <a href="#mypanel" data-theme="d" data-icon="bars" data-iconpos="notext" data-shadow="false" data-iconshadow="false"
-                class="ui-icon-nodisc">Open left panel</a>
+            <a href="#mypanel" data-theme="d" data-icon="bars" data-iconpos="notext" data-shadow="false" data-iconshadow="false" class="ui-icon-nodisc">Open left panel</a>
             <a href="#" onclick="window.location.reload()" data-icon="back" data-iconpos="notext">Refresh</a>
         </div>
         <div data-role="content" id="boardlist" class="ui-content">
@@ -113,12 +76,49 @@
                         document.write('<li><a href="#"><h2>' + json[k].dest + '</h2>' +
                             '<p class="topic"><strong>' + json[k].car + ' 인승</strong></p>' +
                             '<p><strong>' + json[k].date + '</strong></p>' +
-                            '<h4 class="ui-li-aside"><strong>￦ ' + json[k].price + '</strong></h4></a>' +
+                            '<p class="ui-li-aside"><br><br><strong>￦ ' + json[k].price +
+                            '</strong></p></a>' +
                             '<a href="#" class="delete"></a>');
 
                     });
                 </script>
             </ul>
+        </div>
+    </div>
+    <div data-role="page" id="updateinfo">
+        <div data-role="header" data-position="fixed" data-theme="b">
+            <h1>BUSYA</h1>
+        </div>
+        <div data-role="content" class="ui-content" style="background: white;">
+
+        </div>
+    </div>
+
+    <div data-role="page" id="regular">
+        <div data-role="header" data-position="fixed" data-theme="b">
+            <h1>내 배차목록</h1>
+        </div>
+        <div data-role="content" class="ui-content" style="background: white;">
+
+        </div>
+    </div>
+
+    <div data-role="page" id="once">
+        <div data-role="header" data-position="fixed" data-theme="b">
+            <h1>단일 배차</h1>
+        </div>
+        <div data-role="content" class="ui-content" style="background: white;">
+            <script lang="js">
+                json = JSON.parse(json.responseJSON);
+                Object.keys(json).forEach(function (k) {
+                    document.write('<li><a href="#"><h2>' + json[k].dest + '</h2>' +
+                        '<p class="topic"><strong>' + json[k].car + ' 인승</strong></p>' +
+                        '<p><strong>' + json[k].date + '</strong></p>' +
+                        '<p class="ui-li-aside"><br><br><strong>￦ ' + json[k].price +
+                        '</strong></p></a>' +
+                        '<a href="#" class="delete"></a>');
+                });
+            </script>
         </div>
     </div>
 </body>
