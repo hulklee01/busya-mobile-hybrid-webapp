@@ -42,13 +42,13 @@ li a.ui-btn.border-bottom {
 /* Hide the delete button on touch
 devices */
 
-ul.touch li.ui-li-has-alt a.delete {
+/* ul.touch li.ui-li-has-alt a.delete {
     display: none;
 }
 
 ul.touch li.ui-li-has-alt a.ui-btn {
     margin-right: 0;
-}
+} */
 
 /* Styling for the popup */
 
