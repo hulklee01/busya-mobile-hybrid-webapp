@@ -22,8 +22,8 @@
             contentType: "application/json"
         });
 
-        $(document).on("pageinit", "#demo-page", function () {    
-            $(document).on("swipeleft swiperight", "#demo-page", function (e) {        
+        $(document).on("pageinit", "#main", function () {    
+            $(document).on("swipeleft swiperight", "#main", function (e) {        
                 // We check if there is no open panel on the page because otherwise        
                 // a swipe to close the left panel would also open the right panel(and v.v.).         
                 // We do this by checking the data that the framework stores on the pageelement(panel: open).        
@@ -93,7 +93,7 @@
 </head>
 
 <body>
-    <div data-role="page" id="main">
+<div data-role="page" id="main">
         <div data-role="panel" id="mypanel" data-display="overlay">
             <div data-role="header" data-theme="a">
                 <h1>마이 페이지</h1>
