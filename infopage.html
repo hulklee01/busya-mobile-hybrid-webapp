@@ -12,7 +12,7 @@
         var json = $.ajax({
             type: "POST",
             async: false,
-            url: "https://busyawrite.azurewebsites.net/api/short/select?num=" + 6,
+            url: "https://busyawrite.azurewebsites.net/api/short/select?num=" + getParameters('num'),
             data: json,
             success: function () {},
             dataType: "json",
