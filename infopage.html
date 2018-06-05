@@ -9,10 +9,11 @@
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <script src="js/getparam.js"></script>
     <script>
+        var num = getParameters('num');
         var json = $.ajax({
             type: "POST",
             async: false,
-            url: "https://busyawrite.azurewebsites.net/api/short/select?num=" + 2,
+            url: "https://busyawrite.azurewebsites.net/api/short/select?num=" + num,
             data: json,
             success: function () {},
             dataType: "json",
@@ -21,7 +22,18 @@
 
         json = JSON.parse(json.responseJSON);
 
-        console.log(json);
+        function apply() {
+            $.ajax({
+                type: "POST",
+                async: false,
+                url: "https://busyawrite.azurewebsites.net/api/short/apply?num=" + num,
+                data: json,
+                success: function () {},
+                dataType: "json",
+                contentType: "application/json"
+            })
+            window.location = "./boardlist_short.html";
+        }
     </script>
 </head>
 
@@ -36,11 +48,11 @@
                     Object.keys(json).forEach(function (k) {
                         document.write('<li><h1><strong>' + json[k].name + '</strong></h1></li>');
                         document.write('<li>' + json[k].date + '</li>');
-                        document.write('<li>' + json[k].car + ' 인승</li>');                        
+                        document.write('<li>' + json[k].car + ' 인승</li>');
                         document.write('<li>' + json[k].dest + '</li>');
                         document.write('<li>￦ ' + json[k].price + '</li>');
                         document.write('<li><br><br><br></li>');
-                        document.write('<li><button>신청</button></li>');
+                        document.write('<li><button onclick="apply()">신청</button></li>');
                     });
                 </script>
             </ul>

@@ -55,6 +55,11 @@
 </head>
 
 <body>
+<!-- 
+******************************************************************************************************
+*********************************@@@@@@@@@HERE IS MAINPAGE@@@@@@@@@***********************************
+******************************************************************************************************
+ -->
     <div data-role="page" id="main">
         <div data-role="panel" id="mypanel" data-display="overlay">
             <div data-role="header" data-theme="a">
@@ -94,20 +99,47 @@
                 <script lang="js">
                     jsonall = JSON.parse(jsonall.responseJSON);
                     var result = Object.keys(jsonall).forEach(function (k) {
-                        document.write('<li>');
-                        document.write('<a href = "http://busya.azurewebsites.net/infopage.html?num=' + jsonall[
-                            k].num + '">');
-                        document.write('<h2>' + jsonall[k].dest + '</h2>');
-                        document.write('<p class="topic"><strong>' + jsonall[k].car + ' 인승</strong></p>');
-                        document.write('<p><strong>' + jsonall[k].date + '</strong></p>');
-                        document.write('<p class="ui-li-aside"><br><br><strong>￦ ' + jsonall[k].price +
-                            '</strong></p></a>');
-                        document.write('<a href="#" class="delete"></a>');
+                        if (jsonall[k].apply == 1) {
+                            document.write('<li>');
+                            document.write('<a href = "http://busya.azurewebsites.net/infopage.html?num=' +
+                                jsonall[k].num + '">');
+                            document.write('<h2>' + jsonall[k].dest + '</h2>');
+                            document.write('<p class="topic"><strong>' + jsonall[k].car + ' 인승</strong></p>');
+                            document.write('<p><strong>' + jsonall[k].date + '</strong></p>');
+                            document.write('<p class="ui-li-aside"><br><br><strong>￦ ' + jsonall[k].price +
+                                '</strong></p></a>');
+                            document.write('<a href="#" data-theme="d" data-iconpos="text">신청 가능</a>');
+                        } else if (jsonall[k].apply == 2) {
+                            document.write('<li>');
+                            document.write('<a href = "#" class="ui-state-disabled">');
+                            document.write('<h2>' + jsonall[k].dest + '</h2>');
+                            document.write('<p class="topic"><strong>' + jsonall[k].car + ' 인승</strong></p>');
+                            document.write('<p><strong>' + jsonall[k].date + '</strong></p>');
+                            document.write('<p class="ui-li-aside"><br><br><strong>￦ ' + jsonall[k].price +
+                                '</strong></p></a>');
+                            document.write('<a href="#" data-theme="b" data-iconpos="text">대기중</a>');
+                        } else {
+                            document.write('<li>');
+                            document.write('<a href = "#" class="ui-state-disabled">');
+                            document.write('<h2>' + jsonall[k].dest + '</h2>');
+                            document.write('<p class="topic"><strong>' + jsonall[k].car + ' 인승</strong></p>');
+                            document.write('<p><strong>' + jsonall[k].date + '</strong></p>');
+                            document.write('<p class="ui-li-aside"><br><br><strong>￦ ' + jsonall[k].price +
+                                '</strong></p></a>');
+                            document.write('<a href="#" data-theme="a" data-iconpos="text">배차 완료</a>');
+                        }
+                        document.write('</li>');
                     });
                 </script>
             </ul>
         </div>
     </div>
+
+<!-- 
+******************************************************************************************************
+**********************************@@@@@@@@@HERE IS REGPAGE@@@@@@@@@***********************************
+******************************************************************************************************
+ -->
 
     <div data-role="page" id="regular">
         <div data-role="header" data-position="fixed" data-theme="b">
@@ -117,6 +149,12 @@
 
         </div>
     </div>
+
+<!-- 
+******************************************************************************************************
+*********************************@@@@@@@@@HERE IS ONCEPAGE@@@@@@@@@***********************************
+******************************************************************************************************
+ -->
 
     <div data-role="page" id="once">
         <div data-role="header" data-position="fixed" data-theme="b">
@@ -132,13 +170,19 @@
                             '<p class="topic"><strong>' + jsononce[k].car + ' 인승</strong></p>' +
                             '<p><strong>' + jsononce[k].date + '</strong></p>' +
                             '<p class="ui-li-aside"><br><br><strong>￦ ' + jsononce[k].price +
-                            '</strong></p></a>' +
-                            '<a href="#" class="delete"></a>');
+                            '</strong></p></a>');
+                        document.write('<a href="#" class="delete"></a>');
                     });
                 </script>
             </ul>
         </div>
     </div>
+
+<!-- 
+******************************************************************************************************
+*********************************@@@@@@@@@HERE IS WEEKPAGE@@@@@@@@@***********************************
+******************************************************************************************************
+ -->
 
     <div data-role="page" id="weekplan">
         <div data-role="header" data-position="fixed" data-theme="b">

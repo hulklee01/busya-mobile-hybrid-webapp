@@ -33,8 +33,7 @@
                     jsononce = JSON.parse(jsononce.responseJSON);
                     Object.keys(jsononce).forEach(function (k) {
                         document.write('<li><a href="./infopage.html?num=' + jsononce[k].num + '"><h2>' +
-                            jsononce[
-                                k].dest + '</h2>' +
+                            jsononce[k].dest + '</h2>' +
                             '<p class="topic"><strong>' + jsononce[k].car + ' 인승</strong></p>' +
                             '<p><strong>' + jsononce[k].date + '</strong></p>' +
                             '<p class="ui-li-aside"><br><br><strong>￦ ' + jsononce[k].price +
