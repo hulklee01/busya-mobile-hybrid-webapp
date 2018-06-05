@@ -5,6 +5,7 @@
     <title>.....</title>
     <meta name="viewport" content="width = device-width, initial-scale = 1">
     <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <script src="js/callkakaoid.js"></script>
@@ -62,19 +63,24 @@
             <div data-role="content" data-theme="a">
                 <ul data-role="listview">
                     <li>
-                        <a href="#updateinfo">개인정보 수정</a>
-                    </li>
-                    <li>
                         <a href="#regular">내 배차목록</a>
                     </li>
                     <li>
                         <a href="#once">단일 배차</a>
                     </li>
+                    <li>
+                        <a href="#weekplan">주간 일정표</a>
+                    </li>
+                    <li>
+                        <a href="#updateinfo">개인정보 수정</a>
+                    </li>
                 </ul>
             </div>
         </div>
         <div data-role="header" data-position="fixed" data-theme="b">
-            <h1>BUSYA</h1>
+            <a href="./test.html">
+                <h1>BUSYA</h1>
+            </a>
             <a href="#mypanel" data-theme="d" data-icon="bars" data-iconpos="notext" data-shadow="false" data-iconshadow="false" class="ui-icon-nodisc">Open left panel</a>
             <a href="#" onclick="window.location.reload()" data-icon="back" data-iconpos="notext">Refresh</a>
         </div>
@@ -93,14 +99,6 @@
                     });
                 </script>
             </ul>
-        </div>
-    </div>
-    <div data-role="page" id="updateinfo">
-        <div data-role="header" data-position="fixed" data-theme="b">
-            <h1>BUSYA</h1>
-        </div>
-        <div data-role="content" class="ui-content" style="background: white;">
-
         </div>
     </div>
 
@@ -131,6 +129,23 @@
                     });
                 </script>
             </ul>
+        </div>
+    </div>
+
+    <div data-role="page" id="weekplan">
+        <div data-role="header" data-position="fixed" data-theme="b">
+            <h1>주간 일정표</h1>
+        </div>
+        <div data-role="content" class="ui-content" style="background: white;">
+
+        </div>
+    </div>
+
+    <div data-role="page" id="updateinfo">
+        <div data-role="header" data-position="fixed" data-theme="b">
+            <h1>개인 정보</h1>
+        </div>
+        <div data-role="content" class="ui-content" style="background: white;">
 
         </div>
     </div>

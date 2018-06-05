@@ -6,11 +6,15 @@
     <meta name="viewport" content="width = device-width, initial-scale = 1">
     <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="https://rawgithub.com/arschmitz/jquery-mobile-datepicker-wrapper/master/jquery.mobile.datepicker.css"
+    />
     <link rel="stylesheet" href="css/mobiscroll.javascript.min.css">
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="https://rawgithub.com/jquery/jquery-ui/1-10-stable/ui/jquery.ui.datepicker.js"></script>
+    <script src="https://rawgithub.com/arschmitz/jquery-mobile-datepicker-wrapper/master/jquery.mobile.datepicker.js"></script>
     <!-- <script src="https://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script> -->
     <script src="js/mobiscroll.javascript.min.js"></script>
     <script src="js/time.js"></script>
@@ -30,8 +34,8 @@
                     <input type="text" name="name" id="name" placeholder="이름을 입력해주세요." value="">
                     <br>
                     <label for="car">차량</label>
-                    <select name="car" id="car" data-mini="true">
-                        <option value="" data-placeholder="true">선택해주세요</option>
+                    <select name="car" id="car" data-mini="true" data-native-menu=false>
+                        <option value="" data-placeholder="true" placeholder="차량을 선택하세요.">차량을 선택하세요</option>
                         <option value="9">9인승</option>
                         <option value="12">12인승</option>
                         <option value="25">25인승</option>
@@ -39,16 +43,16 @@
                     <br>
                     <br>
                     <label for="dest">목적지</label>
-                    <input type="text" name="dest" id="dest" placeholder="목적지를 입력해주세요." value="">
+                    <input type="text" name="dest" id="dest" placeholder="목적지를 입력하세요." value="">
                     <br>
                     <label for="date">일시</label>
-                    <input type="text" id="date" name="date" placeholder="날짜를 입력해주세요.">
+                    <input type="text" id="date" name="date" data-role="date" data-inline="true" placeholder="날짜를 입력하세요.">
                     <br>
                     <label for="time">시간</label>
-                    <input id="time" name="time" placeholder="시간을 입력해주세요.">
+                    <input id="time" name="time" placeholder="시간을 입력하세요.">
                     <br>
                     <label for="price">보수</label>
-                    <input type="number" id="price" pattern="[0-9]*" name="price" placeholder="보수를 입력해주세요. (원 단위)">
+                    <input type="number" id="price" pattern="[0-9]*" name="price" placeholder="보수를 입력하세요. (원 단위)">
                     <br>
                     <br>
                     <a href="redirection.html" type="submit" id="submit-short" class="ui-shadow ui-btn ui-corner-all ui-mini ui-btn-b">입력완료</a>
