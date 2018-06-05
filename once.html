@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>.....</title>
+    <meta name="viewport" content="width = device-width, initial-scale = 1">
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="js/callkakaoid.js"></script>
+    <script>
+        var jsononce = $.ajax({
+            type: "POST",
+            async: false,
+            url: "https://busyawrite.azurewebsites.net/api/short/select?num=0",
+            data: jsononce,
+            success: function () {},
+            dataType: "json",
+            contentType: "application/json"
+        });
+    </script>
+
+</head>
+
+<body>
+    <div data-role="page" id="main">
+        <div data-role="header" data-position="fixed" data-theme="b">
+            <h1>단일 배차</h1>
+        </div>
+        <div data-role="content" class="ui-content" style="background: white;">
+            <ul id="list" class="touch" data-role="listview" data-icon="false" data-split-icon="delete">
+                <script lang="js">
+                    jsononce = JSON.parse(jsononce.responseJSON);
+                    Object.keys(jsononce).forEach(function (k) {
+                        document.write('<li><a href="./infopage.html?num=' + jsononce[k].num + '"><h2>' +
+                            jsononce[
+                                k].dest + '</h2>' +
+                            '<p class="topic"><strong>' + jsononce[k].car + ' 인승</strong></p>' +
+                            '<p><strong>' + jsononce[k].date + '</strong></p>' +
+                            '<p class="ui-li-aside"><br><br><strong>￦ ' + jsononce[k].price +
+                            '</strong></p></a>' +
+                            '<a href="#" class="delete"></a>');
+                    });
+                </script>
+            </ul>
+        </div>
+    </div>
+</body>
