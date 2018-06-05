@@ -8,9 +8,18 @@
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <script src="js/getparam.js"></script>
+    <script src="js/callkakaoid.js"></script>
     <script>
         // var num = getParameters('num');
-        var num = 5;
+        var num = 2;
+
+        var push = new Object();
+        push.kakaoid = "11111111";
+        push.num = num;
+        var formData = JSON.stringify(push);
+
+        console.log(formData);
+
         var json = $.ajax({
             type: "POST",
             async: false,
@@ -22,6 +31,25 @@
         });
 
         json = JSON.parse(json.responseJSON);
+
+        function apply() {
+            $.ajax({
+                type: "POST",
+                async: false,
+                url: "https://busyawrite.azurewebsites.net/api/short/apply",
+                data: formData,
+                success: function (data) {
+                    if (data == 0) {
+                        alert('이미 신청된 배차입니다.');
+                    } else {
+                        alert('배차 신청이 완료되었습니다.');
+                    }
+                },
+                dataType: "json",
+                contentType: "application/json"
+            })
+            window.location = "./boardlist_short.html";
+        }
     </script>
 </head>
 
@@ -41,23 +69,6 @@
                         document.write('<li>￦ ' + json[k].price + '</li>');
                         document.write('<li><br><br><br></li>');
                         document.write('<li><button onclick="apply()">신청</button></li>');
-
-                        function apply() {
-                            if (json[k].apply==1) {
-                                $.ajax({
-                                    type: "POST",
-                                    async: false,
-                                    url: "https://busyawrite.azurewebsites.net/api/short/apply?num=" + num,
-                                    data: json,
-                                    success: function () {},
-                                    dataType: "json",
-                                    contentType: "application/json"
-                                })
-                            } else {
-                                alert("이미 신청된 배차입니다.");
-                            }                                
-                            window.location = "./boardlist_short.html";
-                        }
                     });
                 </script>
             </ul>
