@@ -66,7 +66,7 @@
                         <a href="#regular">내 배차목록</a>
                     </li>
                     <li>
-                        <a onclick="window.location='./once.html'">단일 배차</a>
+                        <a onclick="$.mobile.changePage('once.html')">단일 배차</a>
                     </li>
                     <li>
                         <a href="#weekplan">주간 일정표</a>
@@ -87,7 +87,8 @@
                 <script lang="js">
                     jsonall = JSON.parse(jsonall.responseJSON);
                     Object.keys(jsonall).forEach(function (k) {
-                        document.write('<li><a href="./infopage.html?num=' + jsonall[k].num + '"><h2>' + jsonall[k].dest + '</h2>' +
+                        document.write('<li><a href = "http://busya.azurewebsites.net//infopage.html?num=' + jsonall[k].num 
+                            + '"><h2>' + jsonall[k].dest + ' </h2>' +
                             '<p class="topic"><strong>' + jsonall[k].car + ' 인승</strong></p>' +
                             '<p><strong>' + jsonall[k].date + '</strong></p>' +
                             '<p class="ui-li-aside"><br><br><strong>￦ ' + jsonall[k].price +
@@ -117,7 +118,8 @@
                 <script lang="js">
                     jsononce = JSON.parse(jsononce.responseJSON);
                     Object.keys(jsononce).forEach(function (k) {
-                        document.write('<li><a href="./infopage.html?num=' + jsononce[k].num + '"><h2>' + jsononce[k].dest + '</h2>' +
+                        document.write('<li><a href="./infopage.html?num=' + jsononce[k].num + '"><h2>' +
+                            jsononce[k].dest + '</h2>' +
                             '<p class="topic"><strong>' + jsononce[k].car + ' 인승</strong></p>' +
                             '<p><strong>' + jsononce[k].date + '</strong></p>' +
                             '<p class="ui-li-aside"><br><br><strong>￦ ' + jsononce[k].price +
