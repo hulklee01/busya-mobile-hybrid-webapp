@@ -80,14 +80,14 @@
         <div data-role="header" data-position="fixed" data-theme="b">
             <h1>BUSYA</h1>
             <a href="#mypanel" data-theme="d" data-icon="bars" data-iconpos="notext" data-shadow="false" data-iconshadow="false" class="ui-icon-nodisc">Open left panel</a>
-            <a href="#" onclick="window.location.reload()" data-icon="back" data-iconpos="notext">Refresh</a>
+            <a href="#" onclick="window.location.reload()" data-icon="back" data-iconpos="text">새로고침</a>
         </div>
         <div data-role="content" id="boardlist" class="ui-content">
             <ul id="list" class="touch" data-role="listview" data-icon="false" data-split-icon="delete">
                 <script lang="js">
                     jsonall = JSON.parse(jsonall.responseJSON);
-                    Object.keys(jsonall).forEach(function (k) {
-                        document.write('<li><a href = "http://busya.azurewebsites.net//infopage.html?num=' + jsonall[k].num 
+                    var result = Object.keys(jsonall).forEach(function (k) {
+                        document.write('<li><a href = "http://busya.azurewebsites.net/infopage.html?num=' + jsonall[k].num 
                             + '"><h2>' + jsonall[k].dest + ' </h2>' +
                             '<p class="topic"><strong>' + jsonall[k].car + ' 인승</strong></p>' +
                             '<p><strong>' + jsonall[k].date + '</strong></p>' +
@@ -95,6 +95,7 @@
                             '</strong></p></a>' +
                             '<a href="#" class="delete"></a>');
                     });
+                    console.log(result);
                 </script>
             </ul>
         </div>

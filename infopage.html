@@ -12,8 +12,8 @@
         var json = $.ajax({
             type: "POST",
             async: false,
-            url: "https://busyawrite.azurewebsites.net/api/short/select?num=" + getParameters('num'),
-            data: jsononce,
+            url: "https://busyawrite.azurewebsites.net/api/short/select?num=" + 6,
+            data: json,
             success: function () {},
             dataType: "json",
             contentType: "application/json"
@@ -27,6 +27,9 @@
 
 <body>
     <div data-role="page" id="main">
+        <div data-role="popup" data-theme="a">
+            Hello
+        </div>
         <div data-role="header" data-theme="a">
             <h1>
                 <script></script>
@@ -34,18 +37,14 @@
         </div>
         <div data-role="content" class="ui-content" style="background: white;">
             <ul data-role="listview">
-                <li>
-                    <a href="#regular">json.dest</a>
-                </li>
-                <li>
-                    <a onclick="$.mobile.changePage('once.html')">json.car</a>
-                </li>
-                <li>
-                    <a href="#weekplan">json.price</a>
-                </li>
-                <li>
-                    <a href="#updateinfo">개인정보 수정</a>
-                </li>
+                <button onclick="$.mobile.changePage('#popup')">click</button>
+                <script>
+                    Object.keys(json).forEach(function (k) {
+                        document.write('<li>' + json[k].dest + '</li>');
+                        document.write('<li>' + json[k].price + '</li>');
+                        document.write('<li>' + json[k].car + '</li>');
+                    });
+                </script>
             </ul>
         </div>
     </div>
