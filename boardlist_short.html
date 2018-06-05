@@ -76,6 +76,13 @@
                     </li>
                 </ul>
             </div>
+            <div data-role="footer" data-theme="a">
+                <ul data-role="listview">
+                    <li>
+                        <a href="tel:010 8082 5379">문의 000-0000-0000</a>
+                    </li>
+                </ul>
+            </div>
         </div>
         <div data-role="header" data-position="fixed" data-theme="b">
             <h1>BUSYA</h1>
@@ -87,15 +94,16 @@
                 <script lang="js">
                     jsonall = JSON.parse(jsonall.responseJSON);
                     var result = Object.keys(jsonall).forEach(function (k) {
-                        document.write('<li><a href = "http://busya.azurewebsites.net/infopage.html?num=' + jsonall[k].num 
-                            + '"><h2>' + jsonall[k].dest + ' </h2>' +
-                            '<p class="topic"><strong>' + jsonall[k].car + ' 인승</strong></p>' +
-                            '<p><strong>' + jsonall[k].date + '</strong></p>' +
-                            '<p class="ui-li-aside"><br><br><strong>￦ ' + jsonall[k].price +
-                            '</strong></p></a>' +
-                            '<a href="#" class="delete"></a>');
+                        document.write('<li>');
+                        document.write('<a href = "http://busya.azurewebsites.net/infopage.html?num=' + jsonall[
+                            k].num + '">');
+                        document.write('<h2>' + jsonall[k].dest + '</h2>');
+                        document.write('<p class="topic"><strong>' + jsonall[k].car + ' 인승</strong></p>');
+                        document.write('<p><strong>' + jsonall[k].date + '</strong></p>');
+                        document.write('<p class="ui-li-aside"><br><br><strong>￦ ' + jsonall[k].price +
+                            '</strong></p></a>');
+                        document.write('<a href="#" class="delete"></a>');
                     });
-                    console.log(result);
                 </script>
             </ul>
         </div>

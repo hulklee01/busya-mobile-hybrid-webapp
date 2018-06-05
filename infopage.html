@@ -12,7 +12,7 @@
         var json = $.ajax({
             type: "POST",
             async: false,
-            url: "https://busyawrite.azurewebsites.net/api/short/select?num=" + getParameters('num'),
+            url: "https://busyawrite.azurewebsites.net/api/short/select?num=" + 2,
             data: json,
             success: function () {},
             dataType: "json",
@@ -27,22 +27,20 @@
 
 <body>
     <div data-role="page" id="main">
-        <div data-role="popup" data-theme="a">
-            Hello
-        </div>
-        <div data-role="header" data-theme="a">
-            <h1>
-                <script></script>
-            </h1>
+        <div data-role="header" data-theme="b">
+            <h1>상세 정보</h1>
         </div>
         <div data-role="content" class="ui-content" style="background: white;">
             <ul data-role="listview">
-                <button onclick="$.mobile.changePage('#popup')">click</button>
                 <script>
                     Object.keys(json).forEach(function (k) {
+                        document.write('<li><h1><strong>' + json[k].name + '</strong></h1></li>');
+                        document.write('<li>' + json[k].date + '</li>');
+                        document.write('<li>' + json[k].car + ' 인승</li>');                        
                         document.write('<li>' + json[k].dest + '</li>');
-                        document.write('<li>' + json[k].price + '</li>');
-                        document.write('<li>' + json[k].car + '</li>');
+                        document.write('<li>￦ ' + json[k].price + '</li>');
+                        document.write('<li><br><br><br></li>');
+                        document.write('<li><button>신청</button></li>');
                     });
                 </script>
             </ul>
