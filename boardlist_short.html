@@ -98,7 +98,7 @@
             <ul id="list" class="touch" data-role="listview" data-icon="false" data-split-icon="delete">
                 <script lang="js">
                     jsonall = JSON.parse(jsonall.responseJSON);
-                    var result = Object.keys(jsonall).forEach(function (k) {
+                    Object.keys(jsonall).forEach(function (k) {
                         if (jsonall[k].apply == 1) {
                             document.write('<li>');
                             document.write('<a href = "https://busyatest.azurewebsites.net/infopage.html?num=' +
@@ -120,7 +120,7 @@
                             document.write('<a href="#" data-theme="a" data-iconpos="text">대기중</a>');
                         } else {
                             document.write('<li>');
-                            document.write('<a href = "#" class="ui-state-disabled">');
+                            document.write('<a href="#" class="ui-state-disabled">');
                             document.write('<h2>' + jsonall[k].dest + '</h2>');
                             document.write('<p class="topic"><strong>' + jsonall[k].car + ' 인승</strong></p>');
                             document.write('<p><strong>' + jsonall[k].date + '</strong></p>');

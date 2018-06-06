@@ -1,4 +1,4 @@
-var kakaoid = "12345678";
+var kakaoid = "";
 function setMessage(arg) {
     kakaoid = arg;
 }
