@@ -16,9 +16,7 @@
         function setMessage(arg) {
             kakaoid = arg;
             $(document).ready(function () {
-                var url =
-                    'https://busyawrite.azurewebsites.net/api/userinfo/checkuser?code=aeYpCr1mCFIazVjfQKMUlmwBSZnM9e0ZGrrTeonfiA6WagnajeXFHA==&kakaoid=' +
-                    kakaoid;
+                var url = 'https://busyafunc.azurewebsites.net/api/userinfo/checkuser?kakaoid=' + kakaoid;
                 $.ajax({
                     contentType: "application/json",
                     type: "POST",

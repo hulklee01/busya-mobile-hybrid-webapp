@@ -55,7 +55,7 @@
 </head>
 
 <body>
-<!-- 
+    <!-- 
 ******************************************************************************************************
 *********************************@@@@@@@@@HERE IS MAINPAGE@@@@@@@@@***********************************
 ******************************************************************************************************
@@ -63,31 +63,24 @@
     <div data-role="page" id="main">
         <div data-role="panel" id="mypanel" data-display="overlay">
             <div data-role="header" data-theme="a">
-                <h1>마이 페이지</h1>
+                <h1>관리자 페이지</h1>
             </div>
             <div data-role="content" data-theme="a">
                 <ul data-role="listview">
                     <li>
-                        <a href="#regular">내 배차목록</a>
+                        <a href="#">신청된 단일 배차</a>
                     </li>
                     <li>
-                        <a onclick="$.mobile.changePage('once.html')">단일 배차</a>
+                        <a href="#">단일 배차</a>
                     </li>
                     <li>
-                        <a href="#weekplan">주간 일정표</a>
+                        <a href="#">정기 배차</a>
                     </li>
                     <li>
-                        <a href="#updateinfo">개인정보 수정</a>
+                        <a href="#">기사 목록</a>
                     </li>
                 </ul>
-            </div>
-            <div data-role="footer" data-theme="a">
-                <ul data-role="listview">
-                    <li>
-                        <a href="tel:010-8082-5379" data-rel="external">문의 000-0000-0000</a>
-                    </li>
-                </ul>
-            </div>
+            </div>            
         </div>
         <div data-role="header" data-position="fixed" data-theme="b">
             <h1>BUSYA</h1>
@@ -99,9 +92,9 @@
                 <script lang="js">
                     jsonall = JSON.parse(jsonall.responseJSON);
                     var result = Object.keys(jsonall).forEach(function (k) {
-                        if (jsonall[k].apply == 1) {
+                        if (jsonall[k].apply == 2) {
                             document.write('<li>');
-                            document.write('<a href = "http://busya.azurewebsites.net/infopage.html?num=' +
+                            document.write('<a href = "http://busya.azurewebsites.net/admininfopage.html?num=' +
                                 jsonall[k].num + '">');
                             document.write('<h2>' + jsonall[k].dest + '</h2>');
                             document.write('<p class="topic"><strong>' + jsonall[k].car + ' 인승</strong></p>');
@@ -109,25 +102,7 @@
                             document.write('<p class="ui-li-aside"><br><br><strong>￦ ' + jsonall[k].price +
                                 '</strong></p></a>');
                             document.write('<a href="#" data-theme="d" data-iconpos="text">신청 가능</a>');
-                        } else if (jsonall[k].apply == 2) {
-                            document.write('<li>');
-                            document.write('<a href = "#" class="ui-state-disabled">');
-                            document.write('<h2>' + jsonall[k].dest + '</h2>');
-                            document.write('<p class="topic"><strong>' + jsonall[k].car + ' 인승</strong></p>');
-                            document.write('<p><strong>' + jsonall[k].date + '</strong></p>');
-                            document.write('<p class="ui-li-aside"><br><br><strong>￦ ' + jsonall[k].price +
-                                '</strong></p></a>');
-                            document.write('<a href="#" data-theme="b" data-iconpos="text">대기중</a>');
-                        } else {
-                            document.write('<li>');
-                            document.write('<a href = "#" class="ui-state-disabled">');
-                            document.write('<h2>' + jsonall[k].dest + '</h2>');
-                            document.write('<p class="topic"><strong>' + jsonall[k].car + ' 인승</strong></p>');
-                            document.write('<p><strong>' + jsonall[k].date + '</strong></p>');
-                            document.write('<p class="ui-li-aside"><br><br><strong>￦ ' + jsonall[k].price +
-                                '</strong></p></a>');
-                            document.write('<a href="#" data-theme="a" data-iconpos="text">배차 완료</a>');
-                        }
+                        } 
                         document.write('</li>');
                     });
                 </script>
@@ -135,7 +110,7 @@
         </div>
     </div>
 
-<!-- 
+    <!-- 
 ******************************************************************************************************
 **********************************@@@@@@@@@HERE IS REGPAGE@@@@@@@@@***********************************
 ******************************************************************************************************
@@ -150,7 +125,7 @@
         </div>
     </div>
 
-<!-- 
+    <!-- 
 ******************************************************************************************************
 *********************************@@@@@@@@@HERE IS ONCEPAGE@@@@@@@@@***********************************
 ******************************************************************************************************
@@ -178,7 +153,7 @@
         </div>
     </div>
 
-<!-- 
+    <!-- 
 ******************************************************************************************************
 *********************************@@@@@@@@@HERE IS WEEKPAGE@@@@@@@@@***********************************
 ******************************************************************************************************

@@ -30,7 +30,7 @@ $(document).ready(function () {
 
             $.ajax({
                 type: "POST",
-                url: "https://busyawrite.azurewebsites.net/api/userinfo/insert",
+                url: "https://busyafunc.azurewebsites.net/api/userinfo/insert",
                 data: formData,
                 success: function () { },
                 dataType: "json",
@@ -73,7 +73,7 @@ $(document).ready(function () {
 
             $.ajax({
                 type: "POST",
-                url: "https://busyawrite.azurewebsites.net/api/userinfo/insert",
+                url: "https://busyafunc.azurewebsites.net/api/userinfo/insert",
                 data: formData,
                 success: function () { },
                 dataType: "json",
@@ -124,7 +124,7 @@ $(document).ready(function () {
 
             $.ajax({
                 type: "POST",
-                url: "https://busyawrite.azurewebsites.net/api/short/insert",
+                url: "https://busyafunc.azurewebsites.net/api/short/insert",
                 data: formData,
                 success: function () { },
                 dataType: "json",

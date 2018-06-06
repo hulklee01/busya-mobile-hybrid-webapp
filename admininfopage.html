@@ -13,17 +13,20 @@
         // var num = getParameters('num');
         var num = 2;
 
-        var push = new Object();
-        push.kakaoid = "11111111";
-        push.num = num;
-        var formData = JSON.stringify(push);
+        var con = new Object();
+        con.num = num;
+        con.apply = 3;
+        var formData1 = JSON.stringify(con);
 
-        console.log(formData);
+        var can = new Object();
+        can.num = num;
+        can.apply = 1;
+        var formData2 = JSON.stringify(can);
 
         var json = $.ajax({
             type: "POST",
             async: false,
-            url: "https://busyafunc.azurewebsites.net/api/short/select?num=" + num,
+            url: "https://busyafunc.azurewebsites.net/api/admin/select?num=" + num,
             data: json,
             success: function () {},
             dataType: "json",
@@ -31,24 +34,44 @@
         });
 
         json = JSON.parse(json.responseJSON);
+        console.log(json);
 
-        function apply() {
+        function confirm() {
             $.ajax({
                 type: "POST",
                 async: false,
-                url: "https://busyafunc.azurewebsites.net/api/short/apply",
-                data: formData,
+                url: "https://busyafunc.azurewebsites.net/api/admin/conf",
+                data: formData1,
                 success: function (data) {
                     if (data == 0) {
-                        alert('이미 신청된 배차입니다.');
+                        alert('배차가 확정되었습니다.');
                     } else {
-                        alert('배차 신청이 완료되었습니다.');
+                        alert('ERROR : 다시 한번 시도해주세요.');
                     }
                 },
                 dataType: "json",
                 contentType: "application/json"
             })
-            window.location = "./boardlist_short.html";
+            window.location = "./adminmain.html";
+        }
+
+        function cancel() {
+            $.ajax({
+                type: "POST",
+                async: false,
+                url: "https://busyafunc.azurewebsites.net/api/admin/conf",
+                data: formData2,
+                success: function (data) {
+                    if (data == 0) {
+                        alert('배차가 취소되었습니다.');
+                    } else {
+                        alert('ERROR : 다시 한번 시도해주세요.');
+                    }
+                },
+                dataType: "json",
+                contentType: "application/json"
+            })
+            window.location = "./adminmain.html";
         }
     </script>
 </head>
@@ -67,8 +90,10 @@
                         document.write('<li>' + json[k].car + ' 인승</li>');
                         document.write('<li>' + json[k].dest + '</li>');
                         document.write('<li>￦ ' + json[k].price + '</li>');
+                        document.write('<li>￦ ' + json[k].driver + '</li>');
                         document.write('<li><br><br><br></li>');
-                        document.write('<li><button onclick="apply()">신청</button></li>');
+                        document.write('<li><button onclick="confirm()">확정</button></li>');
+                        document.write('<li><button onclick="cancel()">취소</button></li>');
                     });
                 </script>
             </ul>
