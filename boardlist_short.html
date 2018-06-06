@@ -101,7 +101,7 @@
                     var result = Object.keys(jsonall).forEach(function (k) {
                         if (jsonall[k].apply == 1) {
                             document.write('<li>');
-                            document.write('<a href = "http://busya.azurewebsites.net/infopage.html?num=' +
+                            document.write('<a href = "./infopage.html?num=' +
                                 jsonall[k].num + '">');
                             document.write('<h2>' + jsonall[k].dest + '</h2>');
                             document.write('<p class="topic"><strong>' + jsonall[k].car + ' 인승</strong></p>');
