@@ -117,7 +117,6 @@ $(document).ready(function () {
             json.dest = dest;
             json.car = car;
             json.date = date + " " + time;
-            alert(json.date);
             json.price = price;
 
             var formData = JSON.stringify(json);
@@ -126,7 +125,9 @@ $(document).ready(function () {
                 type: "POST",
                 url: "https://busyafunc.azurewebsites.net/api/short/insert",
                 data: formData,
-                success: function () { },
+                success: function () { 
+                    alert('배차가 등록되었습니다.');
+                 },
                 dataType: "json",
                 contentType: "application/json"
             });

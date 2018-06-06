@@ -26,7 +26,7 @@
         var json = $.ajax({
             type: "POST",
             async: false,
-            url: "https://busyafunc.azurewebsites.net/api/admin/select?num=" + num,
+            url: "https://busyafunc.azurewebsites.net/api/ad/select?num=" + num,
             data: json,
             success: function () {},
             dataType: "json",
@@ -40,7 +40,7 @@
             $.ajax({
                 type: "POST",
                 async: false,
-                url: "https://busyafunc.azurewebsites.net/api/admin/conf",
+                url: "https://busyafunc.azurewebsites.net/api/ad/conf",
                 data: formData1,
                 success: function (data) {
                     if (data == 0) {
@@ -59,7 +59,7 @@
             $.ajax({
                 type: "POST",
                 async: false,
-                url: "https://busyafunc.azurewebsites.net/api/admin/conf",
+                url: "https://busyafunc.azurewebsites.net/api/ad/conf",
                 data: formData2,
                 success: function (data) {
                     if (data == 0) {
