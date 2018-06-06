@@ -55,7 +55,7 @@
 </head>
 
 <body>
-<!-- 
+    <!-- 
 ******************************************************************************************************
 *********************************@@@@@@@@@HERE IS MAINPAGE@@@@@@@@@***********************************
 ******************************************************************************************************
@@ -97,13 +97,17 @@
         <div data-role="content" id="boardlist" class="ui-content">
             <ul id="list" class="touch" data-role="listview" data-icon="false" data-split-icon="delete">
                 <script lang="js">
+                    function gopage(num) {
+                        window.location = "./infopage.html?num=" + num;
+                    }
                     jsonall = JSON.parse(jsonall.responseJSON);
                     console.log(jsonall);
                     Object.keys(jsonall).forEach(function (k) {
                         if (jsonall[k].apply == 1) {
                             document.write('<li>');
-                            document.write('<a href = "https://busyatest.azurewebsites.net/infopage.html?num=' +
-                                jsonall[k].num + '">');
+                            // document.write('<a href = "https://busyatest.azurewebsites.net/infopage.html?num=' +
+                            //     jsonall[k].num + '">');
+                            document.write('<a onclick="gopage(' + jsonall[k].num + ')"');
                             document.write('<h2>' + jsonall[k].dest + '</h2>');
                             document.write('<p class="topic"><strong>' + jsonall[k].car + ' 인승</strong></p>');
                             document.write('<p><strong>' + jsonall[k].date + '</strong></p>');
@@ -136,7 +140,7 @@
         </div>
     </div>
 
-<!-- 
+    <!-- 
 ******************************************************************************************************
 **********************************@@@@@@@@@HERE IS REGPAGE@@@@@@@@@***********************************
 ******************************************************************************************************
@@ -151,7 +155,7 @@
         </div>
     </div>
 
-<!-- 
+    <!-- 
 ******************************************************************************************************
 *********************************@@@@@@@@@HERE IS ONCEPAGE@@@@@@@@@***********************************
 ******************************************************************************************************
@@ -179,7 +183,7 @@
         </div>
     </div>
 
-<!-- 
+    <!-- 
 ******************************************************************************************************
 *********************************@@@@@@@@@HERE IS WEEKPAGE@@@@@@@@@***********************************
 ******************************************************************************************************
