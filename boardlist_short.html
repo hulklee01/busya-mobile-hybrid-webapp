@@ -98,6 +98,7 @@
             <ul id="list" class="touch" data-role="listview" data-icon="false" data-split-icon="delete">
                 <script lang="js">
                     jsonall = JSON.parse(jsonall.responseJSON);
+                    console.log(jsonall);
                     Object.keys(jsonall).forEach(function (k) {
                         if (jsonall[k].apply == 1) {
                             document.write('<li>');
