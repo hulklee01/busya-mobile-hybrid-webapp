@@ -43,7 +43,7 @@
                 url: "https://busyafunc.azurewebsites.net/api/ad/conf",
                 data: formData1,
                 success: function (data) {
-                    if (data == 0) {
+                    if (data == 1) {
                         alert('배차가 확정되었습니다.');
                     } else {
                         alert('ERROR : 다시 한번 시도해주세요.');
@@ -62,7 +62,7 @@
                 url: "https://busyafunc.azurewebsites.net/api/ad/conf",
                 data: formData2,
                 success: function (data) {
-                    if (data == 0) {
+                    if (data == 1) {
                         alert('배차가 취소되었습니다.');
                     } else {
                         alert('ERROR : 다시 한번 시도해주세요.');
