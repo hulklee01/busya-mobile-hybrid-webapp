@@ -112,30 +112,27 @@
                             document.write('<p class="topic"><strong>출발 : ' + jsonall[k].start_t + " ↔ 복귀 : " + jsonall[k].return_t + '</strong></p>');
                             document.write('<p class="topic"><strong>' + jsonall[k].car + ' 인승</strong></p>');
                             document.write('<p><strong>' + jsonall[k].date + '</strong></p>');
-                            document.write('<p class="ui-li-aside"><br><strong>￦ ' + jsonall[k].price +
+                            document.write('<p class="ui-li-aside"><br><br><br><strong>￦ ' + jsonall[k].price +
                                 '</strong></p>');
-                            document.write('<p class="ui-li-aside" style="color:blue;"><br><br><strong>신청 가능</strong></p></a>');
-                            document.write('<a href="#" data-theme="d" data-iconpos="text">신청 가능</a>');
+                            document.write('<p class="ui-li-aside" style="color:blue;"><br><br><br><br><br><strong>신청 가능</strong></p></a>');
                         } else if (jsonall[k].apply == 2) {
                             document.write('<li>');
                             document.write('<a href="#" class="ui-state-disabled">');
                             document.write('<h2>' + jsonall[k].start + " ↔ " + jsonall[k].dest + '</h2>');
                             document.write('<p class="topic"><strong>' + jsonall[k].car + ' 인승</strong></p>');
                             document.write('<p><strong>' + jsonall[k].date + '</strong></p>');
-                            document.write('<p class="ui-li-aside"><br><strong>￦ ' + jsonall[k].price +
+                            document.write('<p class="ui-li-aside"><br><br><br><strong>￦ ' + jsonall[k].price +
                                 '</strong></p>');
-                            document.write('<p class="ui-li-aside" style="color:black;"><br><br><strong>배차 확인중</strong></p></a>');
-                            document.write('<a href="#" data-theme="a" data-iconpos="text">대기중</a>');
+                            document.write('<p class="ui-li-aside" style="color:black;"><br><br><br><br><br><strong>배차 확인중</strong></p></a>');
                         } else {
                             document.write('<li>');
                             document.write('<a href="#" class="ui-state-disabled">');
                             document.write('<h2>' + jsonall[k].start + " ↔ " + jsonall[k].dest + '</h2>');
                             document.write('<p class="topic"><strong>' + jsonall[k].car + ' 인승</strong></p>');
                             document.write('<p><strong>' + jsonall[k].date + '</strong></p>');
-                            document.write('<p class="ui-li-aside"><br><strong>￦ ' + jsonall[k].price +
+                            document.write('<p class="ui-li-aside"><br><br><br><strong>￦ ' + jsonall[k].price +
                                 '</strong></p>');
-                            document.write('<p class="ui-li-aside" style="color:red;"><br><br><strong>배차 완료</strong></p></a>');
-                            document.write('<a href="#" data-theme="b" data-iconpos="text">배차 완료</a>');
+                            document.write('<p class="ui-li-aside" style="color:red;"><br><br><br><br><br><strong>배차 완료</strong></p></a>');
                         }
                         document.write('</li>');
                     });
