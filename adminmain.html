@@ -14,21 +14,21 @@
             type: "POST",
             async: false,
             url: "https://busyafunc.azurewebsites.net/api/short/select?num=0",
-            success: function () {},
+            success: function () { },
             dataType: "json",
             contentType: "application/json"
         });
 
-        $(document).on("pageinit", "#main", function () {    
-            $(document).on("swiperight", "#main", function (e) {        
+        $(document).on("pageinit", "#main", function () {
+            $(document).on("swiperight", "#main", function (e) {
                 // We check if there is no open panel on the page because otherwise        
                 // a swipe to close the left panel would also open the right panel(and v.v.).         
                 // We do this by checking the data that the framework stores on the pageelement(panel: open).        
-                if ($.mobile.activePage.jqmData("panel") !== "open") {            
-                    if (e.type === "swiperight") {                
-                        $("#mypanel").panel("open");            
-                    }       
-                }    
+                if ($.mobile.activePage.jqmData("panel") !== "open") {
+                    if (e.type === "swiperight") {
+                        $("#mypanel").panel("open");
+                    }
+                }
             });
         });
     </script>
@@ -69,7 +69,7 @@
                         <a href="#">기사 목록</a>
                     </li>
                 </ul>
-            </div>            
+            </div>
         </div>
         <div data-role="header" data-position="fixed" data-theme="b">
             <h1>BUSYA</h1>
@@ -80,11 +80,12 @@
             <ul id="list" class="touch" data-role="listview" data-icon="false" data-split-icon="delete">
                 <script lang="js">
                     function gopage(num) {
-                        window.location = "./admin_info_short.html?num="+num;
+                        window.location = "./admin_info_short.html?num=" + num;
                     }
                     json = JSON.parse(json.responseJSON);
                     var result = Object.keys(json).forEach(function (k) {
                         if (json[k].apply == 2) {
+                            document.write('<li>');
                             document.write('<a onclick="gopage(' + json[k].num + ')"');
                             document.write('<h2>' + json[k].start + " ↔ " + json[k].dest + '</h2>');
                             document.write('<p class="topic"><strong>출발 : ' + json[k].start_t + " ↔ 복귀 : " + json[k].return_t + '</strong></p>');
@@ -92,8 +93,9 @@
                             document.write('<p><strong>' + json[k].date + '</strong></p>');
                             document.write('<p class="ui-li-aside"><br><br><br><strong>￦ ' + json[k].price +
                                 '</strong></p></a>');
-                        } 
-                        document.write('</li>');
+                            document.write('</li>');
+                        }
+
                     });
                 </script>
             </ul>
