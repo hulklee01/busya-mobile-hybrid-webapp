@@ -49,25 +49,25 @@
     <div data-role="page" id="main">
         <div data-role="panel" id="mypanel" data-display="overlay">
             <div data-role="header" data-theme="a">
-                <h1>관리자 페이지</h1>
+                <h1>마이 페이지</h1>
             </div>
             <div data-role="content" data-theme="a">
                 <ul data-role="listview">
                     <li>
-                        <a onclick="change('./adminmain.html')">신청된 단일 배차</a>
+                        <a href="#">내 정기배차</a>
                     </li>
                     <li>
-                        <a onclick="change('./admin_list_short.html')">단일 배차</a>
+                        <a href="#">내 단일배차</a>
                     </li>
                     <li>
-                        <a onclick="change('./admin_list_long.html')">정기 배차</a>
+                        <a href="#">내 신청목록</a>
                     </li>
                     <li>
-                        <a onclick="change('')">기사 목록</a>
+                        <a href="#">개인정보 수정</a>
                     </li>
                     <li>
-                        <a onclick="change('')">개인 정보 수정</a>
-                    </li>                    
+                        <a href="tel:010-8082-5379" data-rel="external">문의</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -97,7 +97,7 @@
                     console.log(json);
                     Object.keys(json).forEach(function (k) {
                         document.write('<li>');
-                        if (json[k].apply == 1) {
+                        if (json[k].driver == null) {
                             document.write('<a onclick="gopage(' + json[k].num + ')"');
                             document.write('<h2>' + json[k].name + '</h2>');
                             document.write('<p class="topic"><strong>시작 : ' + json[k].start_t + " ↔ 마감 : " + json[k].end_t + '</strong></p>');
@@ -105,18 +105,9 @@
                             document.write('<p><strong>' + getday(json[k].day) + '</strong></p>');
                             document.write('<p class="ui-li-aside"><br><br><br><strong>￦ ' + json[k].price +
                                 '</strong></p>');
-                            document.write('<p class="ui-li-aside" style="color:blue;"><br><br><strong>신청 가능</strong></p></a>');
-                        } else if (json[k].apply == 2) {
-                            document.write('<a href="#" class="ui-state-disabled">');
-                            document.write('<h2>' + json[k].name + '</h2>');
-                            document.write('<p class="topic"><strong>시작 : ' + json[k].start_t + " ↔ 마감 : " + json[k].end_t + '</strong></p>');
-                            document.write('<p class="topic"><strong>' + json[k].car + ' 인승</strong></p>');
-                            document.write('<p><strong>' + getday(json[k].day) + '</strong></p>');
-                            document.write('<p class="ui-li-aside"><br><br><br><strong>￦ ' + json[k].price +
-                                '</strong></p>');
-                            document.write('<p class="ui-li-aside" style="color:red;"><br><br><strong>배차 확인중</strong></p></a>');
+                            document.write('<p class="ui-li-aside" style="color:blue;"><br><br><strong>기사 미정</strong></p></a>');
                         } else {
-                            document.write('<a href="#" class="ui-state-disabled">');
+                            document.write('<a onclick="gopage(' + json[k].num + ')">');
                             document.write('<h2>' + json[k].name + '</h2>');
                             document.write('<p class="topic"><strong>시작 : ' + json[k].start_t + " ↔ 마감 : " + json[k].end_t + '</strong></p>');
                             document.write('<p class="topic"><strong>' + json[k].car + ' 인승</strong></p>');
@@ -126,6 +117,7 @@
                             document.write('<p class="ui-li-aside" style="color:red;"><br><br><strong>배차 완료</strong></p></a>');
                         }
                         document.write('</li>');
+                        console.log(json[k].driver);
                     });
                 </script>
             </ul>
