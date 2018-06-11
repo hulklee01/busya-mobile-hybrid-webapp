@@ -15,7 +15,7 @@
     <script src="js/callkakaoid.js"></script>
     <script>
         $(document).ready(function () {
-            $("a[id=submit-short]").click(function (e) {
+            $("a[id=submit-long]").click(function (e) {
                 var name = $("#name").val();
                 var day = $("#day").val();
                 var start_t = $("#starttime").val();
@@ -99,14 +99,14 @@
                     <label for="starttime">시작시간</label>
                     <input id="starttime" name="starttime" placeholder="시작시간을 입력하세요.">
                     <br>
-                    <label for="returntime">마감시간</label>
+                    <label for="endtime">마감시간</label>
                     <input id="endtime" name="endtime" placeholder="마감시간을 입력하세요.">
                     <br>
                     <label for="price">월급</label>
                     <input type="number" id="price" pattern="[0-9]*" name="price" placeholder="월급을 입력하세요. (원 단위)">
                     <br>
                     <br>
-                    <a href="redirection.html" type="submit" id="submit-short" class="ui-shadow ui-btn ui-corner-all ui-mini ui-btn-b">입력완료</a>
+                    <a href="./redirection.html" type="submit" id="submit-long" class="ui-shadow ui-btn ui-corner-all ui-mini ui-btn-b">입력완료</a>
                 </form>
             </div>
         </div>

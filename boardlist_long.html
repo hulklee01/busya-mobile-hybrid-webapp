@@ -97,7 +97,7 @@
                     console.log(json);
                     Object.keys(json).forEach(function (k) {
                         document.write('<li>');
-                        if (json[k].apply == 1) {
+                        if (json[k].driver == null) {
                             document.write('<a onclick="gopage(' + json[k].num + ')"');
                             document.write('<h2>' + json[k].name + '</h2>');
                             document.write('<p class="topic"><strong>시작 : ' + json[k].start_t + " ↔ 마감 : " + json[k].end_t + '</strong></p>');
@@ -105,18 +105,9 @@
                             document.write('<p><strong>' + getday(json[k].day) + '</strong></p>');
                             document.write('<p class="ui-li-aside"><br><br><br><strong>￦ ' + json[k].price +
                                 '</strong></p>');
-                            document.write('<p class="ui-li-aside" style="color:blue;"><br><br><strong>신청 가능</strong></p></a>');
-                        } else if (json[k].apply == 2) {
-                            document.write('<a href="#" class="ui-state-disabled">');
-                            document.write('<h2>' + json[k].name + '</h2>');
-                            document.write('<p class="topic"><strong>시작 : ' + json[k].start_t + " ↔ 마감 : " + json[k].end_t + '</strong></p>');
-                            document.write('<p class="topic"><strong>' + json[k].car + ' 인승</strong></p>');
-                            document.write('<p><strong>' + getday(json[k].day) + '</strong></p>');
-                            document.write('<p class="ui-li-aside"><br><br><br><strong>￦ ' + json[k].price +
-                                '</strong></p>');
-                            document.write('<p class="ui-li-aside" style="color:red;"><br><br><strong>배차 확인중</strong></p></a>');
+                            document.write('<p class="ui-li-aside" style="color:blue;"><br><br><strong>기사 미정</strong></p></a>');
                         } else {
-                            document.write('<a href="#" class="ui-state-disabled">');
+                            document.write('<a onclick="gopage(' + json[k].num + ')">');
                             document.write('<h2>' + json[k].name + '</h2>');
                             document.write('<p class="topic"><strong>시작 : ' + json[k].start_t + " ↔ 마감 : " + json[k].end_t + '</strong></p>');
                             document.write('<p class="topic"><strong>' + json[k].car + ' 인승</strong></p>');
@@ -126,6 +117,7 @@
                             document.write('<p class="ui-li-aside" style="color:red;"><br><br><strong>배차 완료</strong></p></a>');
                         }
                         document.write('</li>');
+                        console.log(json[k].driver);
                     });
                 </script>
             </ul>

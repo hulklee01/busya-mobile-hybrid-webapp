@@ -73,10 +73,10 @@
                     }
                     Object.keys(json).forEach(function (k) {
                         document.write('<li><h1><strong>' + json[k].name + '</strong></h1></li>');
-                        document.write('<li>' + getday(json[k].day) + '</li>');
+                        document.write('<li><h1><strong>' + getday(json[k].day) + '</strong></h1></li>');
                         document.write('<li><h1><strong> 시작 : ' + json[k].start_t + " ↔ 마감 : " + json[k].end_t + '</strong></h1></li>');
-                        document.write('<li>' + json[k].car + ' 인승</li>');
-                        document.write('<li>￦ ' + json[k].price + '</li>');
+                        document.write('<li><h1><strong>' + json[k].car + ' 인승</strong></h1></li>');
+                        document.write('<li><h1><strong>￦ ' + json[k].price + '</strong></h1></li>');
                         document.write('<li><br><br><br></li>');
                         document.write('<li><button onclick="apply()">신청</button></li>');
                     });
