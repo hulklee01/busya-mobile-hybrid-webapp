@@ -94,7 +94,7 @@ $(document).ready(function () {
 
         if (name == '') {
             e.preventDefault();
-            alert("이름을 입력하세요");
+            alert("출발지를 입력하세요");
         } else if (car == '') {
             e.preventDefault();
             alert("차량을 선택하세요");
