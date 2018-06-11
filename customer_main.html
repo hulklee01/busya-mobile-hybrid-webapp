@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>.....</title>
+    <meta name="viewport" content="width = device-width, initial-scale = 1">
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script>
+        function change(str) {
+            window.location = str;
+        }
+    </script>
+</head>
+
+<body>
+    <div data-role="page" id="main">
+        <div data-role="header" data-position="fixed" data-theme="b">
+            <h1>BUSYA</h1>
+        </div>
+        <div data-role="content" class="ui-content" style="background: white;">
+            <fieldset class="ui-grid-a">
+                <div class="ui-block-a">
+                    <a onclick="change('./insert_short.html')" data-role="button" style="height: 150px; font: 14px Calibri,Arial;">
+                        <br>
+                        <br>
+                        <br>단일 배차 신청</a>
+                </div>
+                <div class="ui-block-b">
+                    <a onclick="change('./insert_long.html')" data-role="button" style="height: 150px; font: 14px Calibri,Arial;">
+                        <br>
+                        <br>
+                        <br>정기 배차 신청</a>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</body>
