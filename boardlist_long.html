@@ -13,19 +13,19 @@
         var json = $.ajax({
             type: "POST",
             async: false,
-            url: "https://busyafunc.azurewebsites.net/api/short/select?num=0",
-            success: function () {},
+            url: "https://busyafunc.azurewebsites.net/api/long/select?num=0",
+            success: function () { },
             dataType: "json",
             contentType: "application/json"
         });
 
-        $(document).on("pageinit", "#main", function () {    
-            $(document).on("swiperight", "#main", function (e) {                
-                if ($.mobile.activePage.jqmData("panel") !== "open") {            
-                    if (e.type === "swiperight") {                
-                        $("#mypanel").panel("open");            
-                    }       
-                }    
+        $(document).on("pageinit", "#main", function () {
+            $(document).on("swiperight", "#main", function (e) {
+                if ($.mobile.activePage.jqmData("panel") !== "open") {
+                    if (e.type === "swiperight") {
+                        $("#mypanel").panel("open");
+                    }
+                }
             });
         });
     </script>
@@ -69,7 +69,7 @@
                         <a href="tel:010-8082-5379" data-rel="external">문의</a>
                     </li>
                 </ul>
-            </div>            
+            </div>
         </div>
         <div data-role="header" data-position="fixed" data-theme="b">
             <h1>BUSYA</h1>
@@ -80,7 +80,18 @@
             <ul id="list" class="touch" data-role="listview" data-icon="false" data-split-icon="delete">
                 <script lang="js">
                     function gopage(num) {
-                        window.location = "./info_short.html?num=" + num;
+                        window.location = "./info_long.html?num=" + num;
+                    }
+                    function getday(num) {
+                        var str = "";
+                        if(num == 1) {
+                            str = " 월 ~ 금 ";
+                        } else if(num == 2) {
+                            str = " 월 ~ 토 ";
+                        } else {
+                            str = " 기타 ";
+                        }
+                        return(str);
                     }
                     json = JSON.parse(json.responseJSON);
                     console.log(json);
@@ -88,28 +99,28 @@
                         document.write('<li>');
                         if (json[k].apply == 1) {
                             document.write('<a onclick="gopage(' + json[k].num + ')"');
-                            document.write('<h2>' + json[k].start + " ↔ " + json[k].dest + '</h2>');
-                            document.write('<p class="topic"><strong>출발 : ' + json[k].start_t + " ↔ 복귀 : " + json[k].return_t + '</strong></p>');
+                            document.write('<h2>' + json[k].name + '</h2>');
+                            document.write('<p class="topic"><strong>시작 : ' + json[k].start_t + " ↔ 마감 : " + json[k].end_t + '</strong></p>');
                             document.write('<p class="topic"><strong>' + json[k].car + ' 인승</strong></p>');
-                            document.write('<p><strong>' + json[k].date + '</strong></p>');
+                            document.write('<p><strong>' + getday(json[k].day) + '</strong></p>');
                             document.write('<p class="ui-li-aside"><br><br><br><strong>￦ ' + json[k].price +
                                 '</strong></p>');
                             document.write('<p class="ui-li-aside" style="color:blue;"><br><br><strong>신청 가능</strong></p></a>');
                         } else if (json[k].apply == 2) {
                             document.write('<a href="#" class="ui-state-disabled">');
-                            document.write('<h2>' + json[k].start + " ↔ " + json[k].dest + '</h2>');
-                            document.write('<p class="topic"><strong>출발 : ' + json[k].start_t + " ↔ 복귀 : " + json[k].return_t + '</strong></p>');
+                            document.write('<h2>' + json[k].name + '</h2>');
+                            document.write('<p class="topic"><strong>시작 : ' + json[k].start_t + " ↔ 마감 : " + json[k].end_t + '</strong></p>');
                             document.write('<p class="topic"><strong>' + json[k].car + ' 인승</strong></p>');
-                            document.write('<p><strong>' + json[k].date + '</strong></p>');
+                            document.write('<p><strong>' + getday(json[k].day) + '</strong></p>');
                             document.write('<p class="ui-li-aside"><br><br><br><strong>￦ ' + json[k].price +
                                 '</strong></p>');
                             document.write('<p class="ui-li-aside" style="color:red;"><br><br><strong>배차 확인중</strong></p></a>');
                         } else {
                             document.write('<a href="#" class="ui-state-disabled">');
-                            document.write('<h2>' + json[k].start + " ↔ " + json[k].dest + '</h2>');
-                            document.write('<p class="topic"><strong>출발 : ' + json[k].start_t + " ↔ 복귀 : " + json[k].return_t + '</strong></p>');
+                            document.write('<h2>' + json[k].name + '</h2>');
+                            document.write('<p class="topic"><strong>시작 : ' + json[k].start_t + " ↔ 마감 : " + json[k].end_t + '</strong></p>');
                             document.write('<p class="topic"><strong>' + json[k].car + ' 인승</strong></p>');
-                            document.write('<p><strong>' + json[k].date + '</strong></p>');
+                            document.write('<p><strong>' + getday(json[k].day) + '</strong></p>');
                             document.write('<p class="ui-li-aside"><br><br><br><strong>￦ ' + json[k].price +
                                 '</strong></p>');
                             document.write('<p class="ui-li-aside" style="color:red;"><br><br><strong>배차 완료</strong></p></a>');

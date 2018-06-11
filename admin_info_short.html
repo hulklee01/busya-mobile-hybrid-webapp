@@ -22,13 +22,17 @@
         can.apply = 1;
         var formData2 = JSON.stringify(can);
 
+        var del = new Object();
+        del.num = num;
+        var formData3 = JSON.stringify(del);
+
         console.log(num);
         var json = $.ajax({
             type: "POST",
             async: false,
             url: "https://busyafunc.azurewebsites.net/api/ad/select?num=" + num,
             data: json,
-            success: function () {},
+            success: function () { },
             dataType: "json",
             contentType: "application/json"
         });
@@ -73,6 +77,25 @@
             })
             window.location = "./adminmain.html";
         }
+
+        function remove() {
+            $.ajax({
+                type: "POST",
+                async: false,
+                url: "https://busyafunc.azurewebsites.net/api/ad/del",
+                data: formData3,
+                success: function (data) {
+                    if (data == 1) {
+                        alert('배차가 삭제되었습니다.');
+                    } else {
+                        alert('ERROR : 다시 한번 시도해주세요.');
+                    }
+                },
+                dataType: "json",
+                contentType: "application/json"
+            })
+            window.location = "./adminmain.html";
+        }
     </script>
 </head>
 
@@ -85,14 +108,37 @@
             <ul data-role="listview">
                 <script>
                     Object.keys(json).forEach(function (k) {
-                        document.write('<li><h1><strong>' + json[k].start + " ↔ " + json[k].dest + '</strong></h1></li>');
-                        document.write('<li><h1><strong> 출발 : ' + json[k].start_t + " ↔ 복귀 : " + json[k].return_t + '</strong></h1></li>');
-                        document.write('<li> 일시 : ' + json[k].date + '</li>');
-                        document.write('<li> ' + json[k].car + ' 인승</li>');
-                        document.write('<li> ￦ ' + json[k].price + '</li>');
-                        document.write('<li><br><br><br></li>');
-                        document.write('<li><button onclick="confirm()">확정</button></li>');
-                        document.write('<li><button onclick="cancel()">취소</button></li>');
+                        if (json[k].apply == 1) {
+                            document.write('<li><h1><strong>신청 가능</strong></h1></li>');
+                            document.write('<li><h1><strong>' + json[k].start + " ↔ " + json[k].dest + '</strong></h1></li>');
+                            document.write('<li><h1><strong> 출발 : ' + json[k].start_t + " ↔ 복귀 : " + json[k].return_t + '</strong></h1></li>');
+                            document.write('<li> 일시 : ' + json[k].date + '</li>');
+                            document.write('<li> ' + json[k].car + ' 인승</li>');
+                            document.write('<li> ￦ ' + json[k].price + '</li>');
+                            document.write('<li><br><br><br></li>');
+                            document.write('<li><button onclick="remove()">삭제</button></li>');
+                        } else if (json[k].apply == 2) {
+                            document.write('<li><h1><strong>배차 진행 중</strong></h1></li>');
+                            document.write('<li><h1><strong>' + json[k].start + " ↔ " + json[k].dest + '</strong></h1></li>');
+                            document.write('<li><h1><strong> 출발 : ' + json[k].start_t + " ↔ 복귀 : " + json[k].return_t + '</strong></h1></li>');
+                            document.write('<li> 일시 : ' + json[k].date + '</li>');
+                            document.write('<li> ' + json[k].car + ' 인승</li>');
+                            document.write('<li> ￦ ' + json[k].price + '</li>');
+                            document.write('<li><br><br><br></li>');
+                            document.write('<li><button onclick="confirm()">확정</button></li>');
+                            document.write('<li><button onclick="cancel()">취소</button></li>');
+                            document.write('<li><button onclick="remove()">삭제</button></li>');
+                        } else {
+                            document.write('<li><h1><strong>배차 완료</strong></h1></li>');
+                            document.write('<li><h1><strong>' + json[k].start + " ↔ " + json[k].dest + '</strong></h1></li>');
+                            document.write('<li><h1><strong> 출발 : ' + json[k].start_t + " ↔ 복귀 : " + json[k].return_t + '</strong></h1></li>');
+                            document.write('<li> 일시 : ' + json[k].date + '</li>');
+                            document.write('<li> ' + json[k].car + ' 인승</li>');
+                            document.write('<li> ￦ ' + json[k].price + '</li>');
+                            document.write('<li><br><br><br></li>');
+                            document.write('<li><button onclick="cancel()">배차 취소</button></li>');
+                            document.write('<li><button onclick="remove()">삭제</button></li>');
+                        }
                     });
                 </script>
             </ul>

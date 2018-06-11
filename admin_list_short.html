@@ -2,7 +2,7 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>.....</title>
+    <title>단일배차 리스트</title>
     <meta name="viewport" content="width = device-width, initial-scale = 1">
     <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
 
@@ -21,9 +21,6 @@
 
         $(document).on("pageinit", "#main", function () {
             $(document).on("swiperight", "#main", function (e) {
-                // We check if there is no open panel on the page because otherwise        
-                // a swipe to close the left panel would also open the right panel(and v.v.).         
-                // We do this by checking the data that the framework stores on the pageelement(panel: open).        
                 if ($.mobile.activePage.jqmData("panel") !== "open") {
                     if (e.type === "swiperight") {
                         $("#mypanel").panel("open");
@@ -31,10 +28,6 @@
                 }
             });
         });
-
-        function change(str) {
-            window.location = str;
-        }
     </script>
     <style>
         #main * {
@@ -90,89 +83,41 @@
                         window.location = "./admin_info_short.html?num=" + num;
                     }
                     json = JSON.parse(json.responseJSON);
-                    var result = Object.keys(json).forEach(function (k) {
-                        if (json[k].apply == 2) {
-                            document.write('<li>');
-                            document.write('<a onclick="gopage(' + json[k].num + ')"');
+                    console.log(json);
+                    Object.keys(json).forEach(function (k) {
+                        document.write('<li>');
+                        if (json[k].apply == 1) {
+                            document.write('<a onclick="gopage(' + json[k].num + ')">');
                             document.write('<h2>' + json[k].start + " ↔ " + json[k].dest + '</h2>');
                             document.write('<p class="topic"><strong>출발 : ' + json[k].start_t + " ↔ 복귀 : " + json[k].return_t + '</strong></p>');
                             document.write('<p class="topic"><strong>' + json[k].car + ' 인승</strong></p>');
                             document.write('<p><strong>' + json[k].date + '</strong></p>');
                             document.write('<p class="ui-li-aside"><br><br><br><strong>￦ ' + json[k].price +
-                                '</strong></p></a>');
-                            document.write('</li>');
+                                '</strong></p>');
+                            document.write('<p class="ui-li-aside" style="color:blue;"><br><br><strong>신청 가능</strong></p></a>');
+                        } else if (json[k].apply == 2) {
+                            document.write('<a onclick="gopage(' + json[k].num + ')">');
+                            document.write('<h2>' + json[k].start + " ↔ " + json[k].dest + '</h2>');
+                            document.write('<p class="topic"><strong>출발 : ' + json[k].start_t + " ↔ 복귀 : " + json[k].return_t + '</strong></p>');
+                            document.write('<p class="topic"><strong>' + json[k].car + ' 인승</strong></p>');
+                            document.write('<p><strong>' + json[k].date + '</strong></p>');
+                            document.write('<p class="ui-li-aside"><br><br><br><strong>￦ ' + json[k].price +
+                                '</strong></p>');
+                            document.write('<p class="ui-li-aside" style="color:red;"><br><br><strong>배차 확인중</strong></p></a>');
+                        } else {
+                            document.write('<a onclick="gopage(' + json[k].num + ')">');
+                            document.write('<h2>' + json[k].start + " ↔ " + json[k].dest + '</h2>');
+                            document.write('<p class="topic"><strong>출발 : ' + json[k].start_t + " ↔ 복귀 : " + json[k].return_t + '</strong></p>');
+                            document.write('<p class="topic"><strong>' + json[k].car + ' 인승</strong></p>');
+                            document.write('<p><strong>' + json[k].date + '</strong></p>');
+                            document.write('<p class="ui-li-aside"><br><br><br><strong>￦ ' + json[k].price +
+                                '</strong></p>');
+                            document.write('<p class="ui-li-aside" style="color:red;"><br><br><strong>배차 완료</strong></p></a>');
                         }
-
+                        document.write('</li>');
                     });
                 </script>
             </ul>
-        </div>
-    </div>
-
-    <!-- 
-******************************************************************************************************
-**********************************@@@@@@@@@HERE IS REGPAGE@@@@@@@@@***********************************
-******************************************************************************************************
- -->
-
-    <div data-role="page" id="regular">
-        <div data-role="header" data-position="fixed" data-theme="b">
-            <h1>내 배차목록</h1>
-        </div>
-        <div data-role="content" class="ui-content" style="background: white;">
-
-        </div>
-    </div>
-
-    <!-- 
-******************************************************************************************************
-*********************************@@@@@@@@@HERE IS ONCEPAGE@@@@@@@@@***********************************
-******************************************************************************************************
- -->
-
-    <div data-role="page" id="once">
-        <div data-role="header" data-position="fixed" data-theme="b">
-            <h1>단일 배차</h1>
-        </div>
-        <div data-role="content" class="ui-content" style="background: white;">
-            <ul id="list" class="touch" data-role="listview" data-icon="false" data-split-icon="delete">
-                <script lang="js">
-                    jsononce = JSON.parse(jsononce.responseJSON);
-                    Object.keys(jsononce).forEach(function (k) {
-                        document.write('<li><a href="./infopage.html?num=' + jsononce[k].num + '"><h2>' +
-                            jsononce[k].dest + '</h2>' +
-                            '<p class="topic"><strong>' + jsononce[k].car + ' 인승</strong></p>' +
-                            '<p><strong>' + jsononce[k].date + '</strong></p>' +
-                            '<p class="ui-li-aside"><br><br><strong>￦ ' + jsononce[k].price +
-                            '</strong></p></a>');
-                        document.write('<a href="#" class="delete"></a>');
-                    });
-                </script>
-            </ul>
-        </div>
-    </div>
-
-    <!-- 
-******************************************************************************************************
-*********************************@@@@@@@@@HERE IS WEEKPAGE@@@@@@@@@***********************************
-******************************************************************************************************
- -->
-
-    <div data-role="page" id="weekplan">
-        <div data-role="header" data-position="fixed" data-theme="b">
-            <h1>주간 일정표</h1>
-        </div>
-        <div data-role="content" class="ui-content" style="background: white;">
-
-        </div>
-    </div>
-
-    <div data-role="page" id="updateinfo">
-        <div data-role="header" data-position="fixed" data-theme="b">
-            <h1>개인 정보</h1>
-        </div>
-        <div data-role="content" class="ui-content" style="background: white;">
-
         </div>
     </div>
 </body>

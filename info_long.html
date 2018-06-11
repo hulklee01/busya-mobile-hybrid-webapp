@@ -22,7 +22,7 @@
         var json = $.ajax({
             type: "POST",
             async: false,
-            url: "https://busyafunc.azurewebsites.net/api/short/select?num=" + num,
+            url: "https://busyafunc.azurewebsites.net/api/long/select?num=" + num,
             data: json,
             success: function () { },
             dataType: "json",
@@ -35,7 +35,7 @@
             $.ajax({
                 type: "POST",
                 async: false,
-                url: "https://busyafunc.azurewebsites.net/api/short/apply",
+                url: "https://busyafunc.azurewebsites.net/api/long/apply",
                 data: formData,
                 success: function (data) {
                     if (data == 0) {
@@ -60,11 +60,22 @@
         <div data-role="content" class="ui-content" style="background: white;">
             <ul data-role="listview">
                 <script>
+                    function getday(num) {
+                        var str = "";
+                        if (num == 1) {
+                            str = " 월 ~ 금 ";
+                        } else if (num == 2) {
+                            str = " 월 ~ 토 ";
+                        } else {
+                            str = " 기타 ";
+                        }
+                        return (str);
+                    }
                     Object.keys(json).forEach(function (k) {
                         document.write('<li><h1><strong>' + json[k].name + '</strong></h1></li>');
-                        document.write('<li>' + json[k].date + '</li>');
+                        document.write('<li>' + getday(json[k].day) + '</li>');
+                        document.write('<li><h1><strong> 시작 : ' + json[k].start_t + " ↔ 마감 : " + json[k].end_t + '</strong></h1></li>');
                         document.write('<li>' + json[k].car + ' 인승</li>');
-                        document.write('<li>' + json[k].dest + '</li>');
                         document.write('<li>￦ ' + json[k].price + '</li>');
                         document.write('<li><br><br><br></li>');
                         document.write('<li><button onclick="apply()">신청</button></li>');

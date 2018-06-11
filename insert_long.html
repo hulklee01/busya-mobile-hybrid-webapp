@@ -55,7 +55,7 @@
 
                     $.ajax({
                         type: "POST",
-                        url: "https://busyafunc.azurewebsites.net/api/short/insert",
+                        url: "https://busyafunc.azurewebsites.net/api/long/insert",
                         data: formData,
                         success: function () {
                             alert('배차가 등록되었습니다.');
@@ -127,7 +127,6 @@
 
     mobiscroll.time('#endtime', {
         display: 'center',
-        timeFormat: 'HH:ii',
-        min: now
+        timeFormat: 'HH:ii'
     });
 </script>
