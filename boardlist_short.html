@@ -2,7 +2,7 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>.....</title>
+    <title>단일배차 리스트</title>
     <meta name="viewport" content="width = device-width, initial-scale = 1">
     <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
 
@@ -10,31 +10,17 @@
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <script src="js/callkakaoid.js"></script>
     <script lang="js">
-        var jsonall = $.ajax({
+        var json = $.ajax({
             type: "POST",
             async: false,
             url: "https://busyafunc.azurewebsites.net/api/short/select?num=0",
-            // data: jsonall,
-            success: function () {},
-            dataType: "json",
-            contentType: "application/json"
-        });
-
-        var jsononce = $.ajax({
-            type: "POST",
-            async: false,
-            url: "https://busyafunc.azurewebsites.net/api/short/select?num=0",
-            // data: jsononce,
             success: function () {},
             dataType: "json",
             contentType: "application/json"
         });
 
         $(document).on("pageinit", "#main", function () {    
-            $(document).on("swiperight", "#main", function (e) {        
-                // We check if there is no open panel on the page because otherwise        
-                // a swipe to close the left panel would also open the right panel(and v.v.).         
-                // We do this by checking the data that the framework stores on the pageelement(panel: open).        
+            $(document).on("swiperight", "#main", function (e) {                
                 if ($.mobile.activePage.jqmData("panel") !== "open") {            
                     if (e.type === "swiperight") {                
                         $("#mypanel").panel("open");            
@@ -68,26 +54,22 @@
             <div data-role="content" data-theme="a">
                 <ul data-role="listview">
                     <li>
-                        <a href="#regular">내 배차목록</a>
+                        <a href="#">내 정기배차</a>
                     </li>
                     <li>
-                        <a href="#once">단일 배차</a>
+                        <a href="#">내 단일배차</a>
                     </li>
                     <li>
-                        <a href="#weekplan">주간 일정표</a>
+                        <a href="#">내 신청목록</a>
                     </li>
                     <li>
-                        <a href="#updateinfo">개인정보 수정</a>
+                        <a href="#">개인정보 수정</a>
+                    </li>
+                    <li>
+                        <a href="tel:010-8082-5379" data-rel="external">문의</a>
                     </li>
                 </ul>
-            </div>
-            <div data-role="footer" data-theme="a">
-                <ul data-role="listview">
-                    <li>
-                        <a href="tel:010-8082-5379" data-rel="external">문의 000-0000-0000</a>
-                    </li>
-                </ul>
-            </div>
+            </div>            
         </div>
         <div data-role="header" data-position="fixed" data-theme="b">
             <h1>BUSYA</h1>
@@ -98,113 +80,42 @@
             <ul id="list" class="touch" data-role="listview" data-icon="false" data-split-icon="delete">
                 <script lang="js">
                     function gopage(num) {
-                        window.location = "./infopage.html?num=" + num;
+                        window.location = "./info_short.html?num=" + num;
                     }
-                    jsonall = JSON.parse(jsonall.responseJSON);
-                    console.log(jsonall);
-                    Object.keys(jsonall).forEach(function (k) {
-                        if (jsonall[k].apply == 1) {
-                            document.write('<li>');
-                            // document.write('<a href = "https://busyatest.azurewebsites.net/infopage.html?num=' +
-                            //     jsonall[k].num + '">');
-                            document.write('<a onclick="gopage(' + jsonall[k].num + ')"');
-                            document.write('<h2>' + jsonall[k].start + " ↔ " + jsonall[k].dest + '</h2>');
-                            document.write('<p class="topic"><strong>출발 : ' + jsonall[k].start_t + " ↔ 복귀 : " + jsonall[k].return_t + '</strong></p>');
-                            document.write('<p class="topic"><strong>' + jsonall[k].car + ' 인승</strong></p>');
-                            document.write('<p><strong>' + jsonall[k].date + '</strong></p>');
-                            document.write('<p class="ui-li-aside"><br><br><br><strong>￦ ' + jsonall[k].price +
+                    json = JSON.parse(json.responseJSON);
+                    console.log(json);
+                    Object.keys(json).forEach(function (k) {
+                        document.write('<li>');
+                        if (json[k].apply == 1) {
+                            document.write('<a onclick="gopage(' + json[k].num + ')"');
+                            document.write('<h2>' + json[k].start + " ↔ " + json[k].dest + '</h2>');
+                            document.write('<p class="topic"><strong>출발 : ' + json[k].start_t + " ↔ 복귀 : " + json[k].return_t + '</strong></p>');
+                            document.write('<p class="topic"><strong>' + json[k].car + ' 인승</strong></p>');
+                            document.write('<p><strong>' + json[k].date + '</strong></p>');
+                            document.write('<p class="ui-li-aside"><br><br><br><strong>￦ ' + json[k].price +
                                 '</strong></p>');
-                            document.write('<p class="ui-li-aside" style="color:blue;"><br><br><br><br><br><strong>신청 가능</strong></p></a>');
-                        } else if (jsonall[k].apply == 2) {
-                            document.write('<li>');
+                            document.write('<p class="ui-li-aside" style="color:blue;"><br><br><strong>신청 가능</strong></p></a>');
+                        } else if (json[k].apply == 2) {
                             document.write('<a href="#" class="ui-state-disabled">');
-                            document.write('<h2>' + jsonall[k].start + " ↔ " + jsonall[k].dest + '</h2>');
-                            document.write('<p class="topic"><strong>' + jsonall[k].car + ' 인승</strong></p>');
-                            document.write('<p><strong>' + jsonall[k].date + '</strong></p>');
-                            document.write('<p class="ui-li-aside"><br><br><br><strong>￦ ' + jsonall[k].price +
+                            document.write('<h2>' + json[k].start + " ↔ " + json[k].dest + '</h2>');
+                            document.write('<p class="topic"><strong>' + json[k].car + ' 인승</strong></p>');
+                            document.write('<p><strong>' + json[k].date + '</strong></p>');
+                            document.write('<p class="ui-li-aside"><br><br><br><strong>￦ ' + json[k].price +
                                 '</strong></p>');
-                            document.write('<p class="ui-li-aside" style="color:black;"><br><br><br><br><br><strong>배차 확인중</strong></p></a>');
+                            document.write('<p class="ui-li-aside" style="color:black;"><br><br><strong>배차 확인중</strong></p></a>');
                         } else {
-                            document.write('<li>');
                             document.write('<a href="#" class="ui-state-disabled">');
-                            document.write('<h2>' + jsonall[k].start + " ↔ " + jsonall[k].dest + '</h2>');
-                            document.write('<p class="topic"><strong>' + jsonall[k].car + ' 인승</strong></p>');
-                            document.write('<p><strong>' + jsonall[k].date + '</strong></p>');
-                            document.write('<p class="ui-li-aside"><br><br><br><strong>￦ ' + jsonall[k].price +
+                            document.write('<h2>' + json[k].start + " ↔ " + json[k].dest + '</h2>');
+                            document.write('<p class="topic"><strong>' + json[k].car + ' 인승</strong></p>');
+                            document.write('<p><strong>' + json[k].date + '</strong></p>');
+                            document.write('<p class="ui-li-aside"><br><br><br><strong>￦ ' + json[k].price +
                                 '</strong></p>');
-                            document.write('<p class="ui-li-aside" style="color:red;"><br><br><br><br><br><strong>배차 완료</strong></p></a>');
+                            document.write('<p class="ui-li-aside" style="color:red;"><br><br><strong>배차 완료</strong></p></a>');
                         }
                         document.write('</li>');
                     });
                 </script>
             </ul>
-        </div>
-    </div>
-
-    <!-- 
-******************************************************************************************************
-**********************************@@@@@@@@@HERE IS REGPAGE@@@@@@@@@***********************************
-******************************************************************************************************
- -->
-
-    <div data-role="page" id="regular">
-        <div data-role="header" data-position="fixed" data-theme="b">
-            <h1>내 배차목록</h1>
-        </div>
-        <div data-role="content" class="ui-content" style="background: white;">
-
-        </div>
-    </div>
-
-    <!-- 
-******************************************************************************************************
-*********************************@@@@@@@@@HERE IS ONCEPAGE@@@@@@@@@***********************************
-******************************************************************************************************
- -->
-
-    <div data-role="page" id="once">
-        <div data-role="header" data-position="fixed" data-theme="b">
-            <h1>단일 배차</h1>
-        </div>
-        <div data-role="content" class="ui-content" style="background: white;">
-            <ul id="list" class="touch" data-role="listview" data-icon="false" data-split-icon="delete">
-                <script lang="js">
-                    jsononce = JSON.parse(jsononce.responseJSON);
-                    Object.keys(jsononce).forEach(function (k) {
-                        document.write('<li><a href="./infopage.html?num=' + jsononce[k].num + '"><h2>' +
-                            jsononce[k].dest + '</h2>' +
-                            '<p class="topic"><strong>' + jsononce[k].car + ' 인승</strong></p>' +
-                            '<p><strong>' + jsononce[k].date + '</strong></p>' +
-                            '<p class="ui-li-aside"><br><br><strong>￦ ' + jsononce[k].price +
-                            '</strong></p></a>');
-                        document.write('<a href="#" class="delete"></a>');
-                    });
-                </script>
-            </ul>
-        </div>
-    </div>
-
-    <!-- 
-******************************************************************************************************
-*********************************@@@@@@@@@HERE IS WEEKPAGE@@@@@@@@@***********************************
-******************************************************************************************************
- -->
-
-    <div data-role="page" id="weekplan">
-        <div data-role="header" data-position="fixed" data-theme="b">
-            <h1>주간 일정표</h1>
-        </div>
-        <div data-role="content" class="ui-content" style="background: white;">
-
-        </div>
-    </div>
-
-    <div data-role="page" id="updateinfo">
-        <div data-role="header" data-position="fixed" data-theme="b">
-            <h1>개인 정보</h1>
-        </div>
-        <div data-role="content" class="ui-content" style="background: white;">
-
         </div>
     </div>
 </body>

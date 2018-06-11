@@ -16,44 +16,39 @@
     <script>
         $(document).ready(function () {
             $("a[id=submit-short]").click(function (e) {
-                var start = $("#start").val();
-                var date = $("#date").val();
+                var name = $("#name").val();
+                var day = $("#day").val();
                 var start_t = $("#starttime").val();
-                var return_t = $("#returntime").val();
+                var end_t = $("#endtime").val();
                 var car = $("#car").val();
-                var dest = $("#dest").val();
                 var price = $("#price").val();
 
-                if (start == '') {
+                if (name == '') {
                     e.preventDefault();
-                    alert("출발지를 입력하세요");
+                    alert("업체명을 입력하세요");
                 } else if (car == '') {
                     e.preventDefault();
                     alert("차량을 선택하세요");
-                } else if (dest == '') {
+                } else if (day == '') {
                     e.preventDefault();
-                    alert("목적지를 입력하세요");
-                } else if (date == '') {
-                    e.preventDefault();
-                    alert("일시를 선택하세요");
+                    alert("근무 요일을 선택하세요");
                 } else if (start_t == '') {
                     e.preventDefault();
-                    alert("출발시간을 선택하세요");
-                } else if (return_t == '') {
+                    alert("시작시간을 선택하세요");
+                } else if (end_t == '') {
                     e.preventDefault();
-                    alert("복귀시간을 선택하세요");
+                    alert("마감시간을 선택하세요");
                 } else if (price == '') {
                     e.preventDefault();
-                    alert("보수를 입력하세요");
+                    alert("월급을 입력하세요");
                 } else {
                     var json = new Object();
                     json.kakaoid = kakaoid;
-                    json.start = start;
-                    json.dest = dest;
+                    json.name = name;
                     json.car = car;
-                    json.date = date;
+                    json.day = day;
                     json.start_t = start_t;
-                    json.return_t = return_t;
+                    json.end_t = end_t;
                     json.price = price;
 
                     var formData = JSON.stringify(json);
@@ -82,12 +77,8 @@
         <div data-role="content" class="ui-content" style="background: white;">
             <div class="ui-field-contain">
                 <form method="POST">
-                    <label for="start">출발지</label>
-                    <input type="text" name="start" id="start" placeholder="출발지를 입력해주세요." value="">
-                    <br>
-                    <label for="dest">목적지</label>
-                    <input type="text" name="dest" id="dest" placeholder="목적지를 입력하세요." value="">
-                    <br>
+                    <label for="name">업체명</label>
+                    <input type="text" name="name" id="name" placeholder="업체명을 입력해주세요." value="">
                     <br>
                     <label for="car">차량</label>
                     <select name="car" id="car" data-mini="true" data-native-menu=false>
@@ -96,18 +87,23 @@
                         <option value="12">12인승</option>
                         <option value="25">25인승</option>
                     </select>
-                    <br>                    
-                    <label for="date">일시</label>
-                    <input type="text" id="date" name="date" placeholder="날짜를 입력하세요.">
                     <br>
-                    <label for="starttime">출발시간</label>
-                    <input id="starttime" name="starttime" placeholder="출발시간을 입력하세요.">
+                    <label for="day">근무 요일</label>
+                    <select name="day" id="day" data-mini="true" data-native-menu=false>
+                        <option value="" data-placeholder="true">근무 요일을 선택하세요</option>
+                        <option value="1">월 ~ 금</option>
+                        <option value="2">월 ~ 토</option>
+                        <option value="3">기타</option>
+                    </select>
                     <br>
-                    <label for="returntime">복귀시간</label>
-                    <input id="returntime" name="returntime" placeholder="복귀시간을 입력하세요.">
+                    <label for="starttime">시작시간</label>
+                    <input id="starttime" name="starttime" placeholder="시작시간을 입력하세요.">
                     <br>
-                    <label for="price">보수</label>
-                    <input type="number" id="price" pattern="[0-9]*" name="price" placeholder="보수를 입력하세요. (원 단위)">
+                    <label for="returntime">마감시간</label>
+                    <input id="endtime" name="endtime" placeholder="마감시간을 입력하세요.">
+                    <br>
+                    <label for="price">월급</label>
+                    <input type="number" id="price" pattern="[0-9]*" name="price" placeholder="월급을 입력하세요. (원 단위)">
                     <br>
                     <br>
                     <a href="redirection.html" type="submit" id="submit-short" class="ui-shadow ui-btn ui-corner-all ui-mini ui-btn-b">입력완료</a>
@@ -129,16 +125,9 @@
         timeFormat: 'HH:ii'
     });
 
-    mobiscroll.time('#returntime', {
+    mobiscroll.time('#endtime', {
         display: 'center',
         timeFormat: 'HH:ii',
         min: now
     });
-
-    mobiscroll.date('#date', {
-    dateWheels: 'yy  mm  dd',
-    dateFormat: 'yy-mm-dd',
-    min: now,
-    minWidth: 100
-});
 </script>

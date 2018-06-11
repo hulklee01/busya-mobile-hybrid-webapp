@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>.....</title>
+    <meta name="viewport" content="width = device-width, initial-scale = 1">
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="js/getparam.js"></script>
+    <script src="js/callkakaoid.js"></script>
+    <script>
+        var num = getParameters('num');
+
+        var push = new Object();
+        push.kakaoid = kakaoid;
+        push.num = num;
+        var formData = JSON.stringify(push);
+
+        console.log(formData);
+
+        var json = $.ajax({
+            type: "POST",
+            async: false,
+            url: "https://busyafunc.azurewebsites.net/api/short/select?num=" + num,
+            data: json,
+            success: function () {},
+            dataType: "json",
+            contentType: "application/json"
+        });
+
+        json = JSON.parse(json.responseJSON);
+
+        function apply() {
+            $.ajax({
+                type: "POST",
+                async: false,
+                url: "https://busyafunc.azurewebsites.net/api/short/apply",
+                data: formData,
+                success: function (data) {
+                    if (data == 0) {
+                        alert('이미 신청된 배차입니다.');
+                    } else {
+                        alert('배차 신청이 완료되었습니다.');
+                    }
+                },
+                dataType: "json",
+                contentType: "application/json"
+            })
+            window.location = "./boardlist_short.html";
+        }
+    </script>
+</head>
+
+<body>
+    <div data-role="page" id="main">
+        <div data-role="header" data-theme="b">
+            <h1>상세 정보</h1>
+        </div>
+        <div data-role="content" class="ui-content" style="background: white;">
+            <ul data-role="listview">
+                <script>
+                    Object.keys(json).forEach(function (k) {
+                        document.write('<li><h1><strong>' + json[k].start + " ↔ " + json[k].dest + '</strong></h1></li>');
+                        document.write('<li><h1><strong> 출발 : ' + json[k].start_t + " ↔ 복귀 : " + json[k].return_t + '</strong></h1></li>');
+                        document.write('<li> 일시 : ' + json[k].date + '</li>');
+                        document.write('<li> ' + json[k].car + ' 인승</li>');
+                        document.write('<li> ￦ ' + json[k].price + '</li>');
+                        document.write('<li><br><br><br></li>');
+                        document.write('<li><button onclick="apply()">신청</button></li>');
+                    });
+                </script>
+            </ul>
+        </div>
+    </div>
+</body>

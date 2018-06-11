@@ -10,21 +10,10 @@
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <script src="js/callkakaoid.js"></script>
     <script lang="js">
-        var jsonall = $.ajax({
+        var json = $.ajax({
             type: "POST",
             async: false,
             url: "https://busyafunc.azurewebsites.net/api/short/select?num=0",
-            data: jsonall,
-            success: function () {},
-            dataType: "json",
-            contentType: "application/json"
-        });
-
-        var jsononce = $.ajax({
-            type: "POST",
-            async: false,
-            url: "https://busyafunc.azurewebsites.net/api/short/select?num=0",
-            data: jsononce,
             success: function () {},
             dataType: "json",
             contentType: "application/json"
@@ -91,21 +80,18 @@
             <ul id="list" class="touch" data-role="listview" data-icon="false" data-split-icon="delete">
                 <script lang="js">
                     function gopage(num) {
-                        window.location = "./admininfopage.html?num="+num;
+                        window.location = "./admin_info_short.html?num="+num;
                     }
-                    jsonall = JSON.parse(jsonall.responseJSON);
-                    var result = Object.keys(jsonall).forEach(function (k) {
-                        if (jsonall[k].apply == 2) {
-                            document.write('<li>');
-                            // document.write('<a href = "http://busya.azurewebsites.net/admininfopage.html?num=' +
-                            //     jsonall[k].num + '">');
-                            document.write('<a onclick="gopage('+jsonall[k].num+')"');
-                            document.write('<h2>' + jsonall[k].dest + '</h2>');
-                            document.write('<p class="topic"><strong>' + jsonall[k].car + ' 인승</strong></p>');
-                            document.write('<p><strong>' + jsonall[k].date + '</strong></p>');
-                            document.write('<p class="ui-li-aside"><br><br><strong>￦ ' + jsonall[k].price +
-                                '</strong></p></a>');
-                            document.write('<a href="#" data-theme="d" data-iconpos="text">신청 가능</a>');
+                    json = JSON.parse(json.responseJSON);
+                    var result = Object.keys(json).forEach(function (k) {
+                        if (json[k].apply == 2) {
+                            document.write('<a onclick="gopage(' + json[k].num + ')"');
+                            document.write('<h2>' + json[k].start + " ↔ " + json[k].dest + '</h2>');
+                            document.write('<p class="topic"><strong>출발 : ' + json[k].start_t + " ↔ 복귀 : " + json[k].return_t + '</strong></p>');
+                            document.write('<p class="topic"><strong>' + json[k].car + ' 인승</strong></p>');
+                            document.write('<p><strong>' + json[k].date + '</strong></p>');
+                            document.write('<p class="ui-li-aside"><br><br><br><strong>￦ ' + json[k].price +
+                                '</strong></p>');
                         } 
                         document.write('</li>');
                     });
