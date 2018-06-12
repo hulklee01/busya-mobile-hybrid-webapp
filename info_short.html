@@ -11,10 +11,11 @@
     <!-- <script src="js/callkakaoid.js"></script> -->
     <script>
         var push = new Object();
+        var num = getParameters('num');
         var formData = "";
         function setMessage(arg) {          
             push.kakaoid = arg;
-            push.num = getParameters('num');;
+            push.num = num;
             formData = JSON.stringify(push);
         }
 
