@@ -80,7 +80,7 @@
             <ul id="list" class="touch" data-role="listview" data-icon="false" data-split-icon="delete">
                 <script lang="js">
                     function gopage(num) {
-                        window.location = "./info_long.html?num=" + num;
+                        window.location = "./admin_info_long.html?num=" + num;
                     }
                     function getday(num) {
                         var str = "";
@@ -97,7 +97,7 @@
                     console.log(json);
                     Object.keys(json).forEach(function (k) {
                         document.write('<li>');
-                        if (json[k].driver == null) {
+                        if (json[k].driver == 0) {
                             document.write('<a onclick="gopage(' + json[k].num + ')"');
                             document.write('<h2>' + json[k].name + '</h2>');
                             document.write('<p class="topic"><strong>시작 : ' + json[k].start_t + " ↔ 마감 : " + json[k].end_t + '</strong></p>');

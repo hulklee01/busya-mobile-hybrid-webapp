@@ -31,24 +31,16 @@
 
         json = JSON.parse(json.responseJSON);
 
-        function apply() {
-            $.ajax({
-                type: "POST",
-                async: false,
-                url: "https://busyafunc.azurewebsites.net/api/long/apply",
-                data: formData,
-                success: function (data) {
-                    if (data == 0) {
-                        alert('이미 신청된 배차입니다.');
-                    } else {
-                        alert('배차 신청이 완료되었습니다.');
-                    }
-                },
-                dataType: "json",
-                contentType: "application/json"
-            })
-            window.location = "./boardlist_short.html";
-        }
+        var driver = $.ajax({
+            type: "POST",
+            async: false,
+            url: "https://busyafunc.azurewebsites.net/api/get/driver",
+            success: function () { },
+            dataType: "json",
+            contentType: "application/json"
+        });
+
+        driver = JSON.parse(driver.responseJSON);        
     </script>
 </head>
 
@@ -78,7 +70,27 @@
                         document.write('<li><h1><strong>' + json[k].car + ' 인승</strong></h1></li>');
                         document.write('<li><h1><strong>￦ ' + json[k].price + '</strong></h1></li>');
                         document.write('<li><br><br><br></li>');
-                        document.write('<li><button onclick="apply()">신청</button></li>');
+                        document.write('<li><a href="#choose" data-role="button">기사 선택</a></li>');
+                    });
+                </script>
+            </ul>
+        </div>
+    </div>
+    <div data-role="page" id="choose">
+        <div data-role="header" data-theme="b">
+            <h1>BUSYA</h1>
+        </div>
+        <div data-role="content" class="ui-content" style="background: white;">
+            <ul id="list" class="touch" data-role="listview" data-icon="false" data-split-icon="delete">
+                <script>
+                    Object.keys(driver).forEach(function (k) {
+                        document.write('<li>');
+                        document.write('<a onclick="">');
+                        document.write('<h2>' + driver[k].name + '</h2>');
+                        document.write('<p class="topic"><strong>' + driver[k].tel + '</strong></p>');
+                        document.write('<p class="topic"><strong>' + driver[k].car + ' 인승</strong></p>');
+                        document.write('<p><strong>' + driver[k].reg + '</strong></p>');
+                        document.write('</li>');
                     });
                 </script>
             </ul>
