@@ -10,19 +10,13 @@
     <script src="js/getparam.js"></script>
     <!-- <script src="js/callkakaoid.js"></script> -->
     <script>
-        var kakaoid = "";
-        function setMessage(arg) {
-            kakaoid = arg;
-            alert(kakaoid + " : " + arg);
-        }
-        var num = getParameters('num');
-
         var push = new Object();
-        push.kakaoid = kakaoid;
-        push.num = num;
-        var formData = JSON.stringify(push);
-
-        console.log(formData);
+        var formData = "";
+        function setMessage(arg) {          
+            push.kakaoid = arg;
+            push.num = getParameters('num');;
+            formData = JSON.stringify(push);
+        }
 
         var json = $.ajax({
             type: "POST",
