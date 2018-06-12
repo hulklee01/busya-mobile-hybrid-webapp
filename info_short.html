@@ -22,8 +22,8 @@
         var json = $.ajax({
             type: "POST",
             async: false,
-            url: "https://busyafunc.azurewebsites.net/api/short/select?num=" + num,
-            data: json,
+            url: "https://busyafunc.azurewebsites.net/api/short/select",
+            data: push,
             success: function () {},
             dataType: "json",
             contentType: "application/json"
