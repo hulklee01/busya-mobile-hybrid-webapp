@@ -22,8 +22,8 @@
         var json = $.ajax({
             type: "POST",
             async: false,
-            url: "https://busyafunc.azurewebsites.net/api/short/select",
-            data: formData,
+            url: "https://busyafunc.azurewebsites.net/api/short/select?num=" + num,
+            data: json,
             success: function () {},
             dataType: "json",
             contentType: "application/json"
@@ -60,6 +60,7 @@
         <div data-role="content" class="ui-content" style="background: white;">
             <ul data-role="listview">
                 <script>
+                    alert(kakaoid);
                     Object.keys(json).forEach(function (k) {
                         document.write('<li><h1><strong>' + json[k].start + " ↔ " + json[k].dest + '</strong></h1></li>');
                         document.write('<li><h1><strong> 출발 : ' + json[k].start_t + " ↔ 복귀 : " + json[k].return_t + '</strong></h1></li>');
