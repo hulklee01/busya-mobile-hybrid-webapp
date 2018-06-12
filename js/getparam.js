@@ -17,5 +17,3 @@ var getParameters = function (paramName) {
         }
     }
 }; 
-
-var kakaoid = getParameters('kakaoid');
