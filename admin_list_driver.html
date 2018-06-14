@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>.....</title>
+    <meta name="viewport" content="width = device-width, initial-scale = 1">
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="js/getparam.js"></script>
+    <script src="js/callkakaoid.js"></script>
+    <script>
+        var driver = $.ajax({
+            type: "POST",
+            async: false,
+            url: "https://busyafunc.azurewebsites.net/api/get/driver",
+            success: function () { },
+            dataType: "json",
+            contentType: "application/json"
+        });
+        driver = JSON.parse(driver.responseJSON);        
+    </script>
+</head>
+
+<body>    
+    <div data-role="page" id="main">
+        <div data-role="panel" id="mypanel" data-display="overlay">
+            <div data-role="header" data-theme="a">
+                <h1>관리자 페이지</h1>
+            </div>
+            <div data-role="content" data-theme="a">
+                <ul data-role="listview">
+                    <li>
+                        <a onclick="change('./admin_main.html')">신청된 단일 배차</a>
+                    </li>
+                    <li>
+                        <a onclick="change('./admin_list_short.html')">단일 배차</a>
+                    </li>
+                    <li>
+                        <a onclick="change('./admin_list_long.html')">정기 배차</a>
+                    </li>
+                    <li>
+                        <a onclick="change('./admin_list_driver.html')">기사 목록</a>
+                    </li>                    
+                </ul>
+            </div>
+        </div>
+        <div data-role="header" data-theme="b">
+            <h1>BUSYA</h1>
+            <a href="#mypanel" data-theme="d" data-icon="bars" data-iconpos="notext" data-shadow="false" data-iconshadow="false" class="ui-icon-nodisc">Open left panel</a>
+            <a href="#" onclick="window.location.reload()" data-icon="back" data-iconpos="text">새로고침</a>
+        </div>
+        <div data-role="content" class="ui-content" style="background: white;">
+            <ul id="list" class="touch" data-role="listview" data-icon="false" data-split-icon="delete">
+                <script>
+                    Object.keys(driver).forEach(function (k) {
+                        document.write('<li>');
+                        document.write('<a onclick="">');
+                        document.write('<h2>' + driver[k].name + '</h2>');
+                        document.write('<p class="topic"><strong>' + driver[k].tel + '</strong></p>');
+                        document.write('<p class="topic"><strong>' + driver[k].car + ' 인승</strong></p>');
+                        document.write('<p><strong>' + driver[k].reg + '</strong></p>');
+                        document.write('</li>');
+                    });
+                </script>
+            </ul>
+        </div>
+    </div>
+</body>
