@@ -6,12 +6,12 @@
     <meta name="viewport" content="width = device-width, initial-scale = 1">
     <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
-    <link rel="stylesheet" href="css/mobiscroll.javascript.min.css">
+    <link href="css/mdtimepicker.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-    <script src="js/mobiscroll.javascript.min.js"></script>
+    <script src="js/mdtimepicker.js"></script>
     <script src="js/callkakaoid.js"></script>
     <script>
         $(document).ready(function () {
@@ -71,6 +71,18 @@
                 }
             });
         });
+
+        $(document).ready(function () {
+            $('#starttime').mdtimepicker();
+        });
+
+        $(document).ready(function () {
+            $('#returntime').mdtimepicker();
+        });
+
+        $(document).ready(function () {
+            $("#date").datepicker();
+        });
     </script>
 </head>
 
@@ -96,15 +108,15 @@
                         <option value="12">12인승</option>
                         <option value="25">25인승</option>
                     </select>
-                    <br>                    
+                    <br>
                     <label for="date">일시</label>
                     <input type="text" id="date" name="date" placeholder="날짜를 입력하세요.">
                     <br>
                     <label for="starttime">출발시간</label>
-                    <input id="starttime" name="starttime" placeholder="출발시간을 입력하세요.">
+                    <input type="text" id="starttime" name="starttime" placeholder="출발시간을 입력하세요.">
                     <br>
                     <label for="returntime">복귀시간</label>
-                    <input id="returntime" name="returntime" placeholder="복귀시간을 입력하세요.">
+                    <input type="text" id="returntime" name="returntime" placeholder="복귀시간을 입력하세요.">
                     <br>
                     <label for="price">보수</label>
                     <input type="number" id="price" pattern="[0-9]*" name="price" placeholder="보수를 입력하세요. (원 단위)">
@@ -117,27 +129,5 @@
     </div>
 </body>
 
-<script>
-    var now = new Date();
-
-    mobiscroll.settings = {
-        theme: 'material'
-    };
-
-    mobiscroll.time('#starttime', {
-        display: 'center',
-        timeFormat: 'HH:ii'
-    });
-
-    mobiscroll.time('#returntime', {
-        display: 'center',
-        timeFormat: 'HH:ii'
-    });
-
-    mobiscroll.date('#date', {
-    dateWheels: 'yy  mm  dd',
-    dateFormat: 'yy-mm-dd',
-    min: now,
-    minWidth: 100
-});
-</script>
+<!-- <script src="https://code.jquery.com/jquery.min.js"></script>
+<script src="js/mdtimepicker.js"></script> -->
