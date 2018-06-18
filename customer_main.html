@@ -15,7 +15,28 @@
 </head>
 
 <body>
-    <div data-role="page" id="main">
+    <div data-role="page" id="main" style="background-image: url('./image/941d48fe3fb0e05154df0eca0b3217ac.jpg'); background-size: 100% 100%;">
+        <div data-role="panel" id="mypanel" data-display="overlay">
+            <div data-role="header" data-theme="a" style="height: 200px; background-image: url('./image/busyahead.PNG'); background-size: 100% 100%;">
+            </div>
+            <br>
+            <div data-role="content" data-theme="a">
+                <ul data-role="listview">
+                    <li>
+                        <a onclick="change('./admin_main.html')">신청 단일 배차</a>
+                    </li>
+                    <li>
+                        <a onclick="change('./admin_list_short.html')">단일 배차</a>
+                    </li>
+                    <li>
+                        <a onclick="change('./admin_list_long.html')">정기 배차</a>
+                    </li>
+                    <li>
+                        <a onclick="change('./admin_list_driver.html')">기사 목록</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
         <div data-role="header" data-position="fixed" data-theme="b">
             <h1>BUSYA</h1>
         </div>

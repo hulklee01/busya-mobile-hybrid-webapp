@@ -53,11 +53,11 @@
 *********************************@@@@@@@@@HERE IS MAINPAGE@@@@@@@@@***********************************
 ******************************************************************************************************
  -->
-    <div data-role="page" id="main">
+    <div data-role="page" id="main" style="background-image: url('./image/941d48fe3fb0e05154df0eca0b3217ac.jpg'); background-size: 100% 100%;">
         <div data-role="panel" id="mypanel" data-display="overlay">
-            <div data-role="header" data-theme="a">
-                <h1>관리자 페이지</h1>
+            <div data-role="header" data-theme="a" style="height: 200px; background-image: url('./image/busyahead.PNG'); background-size: 100% 100%;">
             </div>
+            <br>
             <div data-role="content" data-theme="a">
                 <ul data-role="listview">
                     <li>
@@ -72,16 +72,13 @@
                     <li>
                         <a onclick="change('./admin_list_driver.html')">기사 목록</a>
                     </li>
-                    <li>
-                        <a onclick="change('')">개인 정보 수정</a>
-                    </li>
                 </ul>
             </div>
         </div>
         <div data-role="header" data-position="fixed" data-theme="b">
             <h1>BUSYA</h1>
             <a href="#mypanel" data-theme="d" data-icon="bars" data-iconpos="notext" data-shadow="false" data-iconshadow="false" class="ui-icon-nodisc">Open left panel</a>
-            <a href="#" onclick="window.location.reload()" data-icon="back" data-iconpos="text">새로고침</a>
+            <a href="#" onclick="window.location.reload()" data-iconpos="text">새로고침</a>
         </div>
         <div data-role="content" id="boardlist" class="ui-content">
             <ul id="list" class="touch" data-role="listview" data-icon="false" data-split-icon="delete">

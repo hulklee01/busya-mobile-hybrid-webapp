@@ -78,11 +78,11 @@
 </head>
 
 <body>
-    <div data-role="page" id="main">
-        <div data-role="header" data-position="fixed" data-theme="b">
+    <div data-role="page" id="main" style="background-image: url('./image/wood.png'); background-size: 100% 100%;">
+        <div data-role="header" data-position="fixed" data-theme="b" style="background-image: url('./image/gray.jpg'); background-size: 100% 100%;">
             <h1>BUSYA</h1>
         </div>
-        <div data-role="content" class="ui-content" style="background: white;">
+        <div data-role="content" class="ui-content">
             <div class="ui-field-contain">
                 <form method="POST">
                     <label for="name">업체명</label>
@@ -120,21 +120,3 @@
         </div>
     </div>
 </body>
-
-<script>
-    var now = new Date();
-
-    mobiscroll.settings = {
-        theme: 'material'
-    };
-
-    mobiscroll.time('#starttime', {
-        display: 'center',
-        timeFormat: 'HH:ii'
-    });
-
-    mobiscroll.time('#endtime', {
-        display: 'center',
-        timeFormat: 'HH:ii'
-    });
-</script>
