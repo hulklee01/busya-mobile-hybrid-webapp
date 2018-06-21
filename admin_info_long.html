@@ -10,11 +10,11 @@
     <script src="js/getparam.js"></script>
     <script src="js/callkakaoid.js"></script>
     <script>
-        var num = getParameters('num');
+        var disNum = getParameters('num');
 
         var push = new Object();
         push.kakaoid = kakaoid;
-        push.num = num;
+        push.num = disNum;
         var formData = JSON.stringify(push);
 
         console.log(formData);
@@ -22,7 +22,7 @@
         var json = $.ajax({
             type: "POST",
             async: false,
-            url: "https://busyafunc.azurewebsites.net/api/long/select?num=" + num,
+            url: "https://busyafunc.azurewebsites.net/api/long/select?num=" + disNum,
             data: json,
             success: function () { },
             dataType: "json",
@@ -40,7 +40,11 @@
             contentType: "application/json"
         });
 
-        driver = JSON.parse(driver.responseJSON);        
+        driver = JSON.parse(driver.responseJSON);
+
+        function change(driverNum) {
+            window.location = "./admin_info_driver.html?drivernum=" + driverNum + "&disnum=" + disNum;
+        }
     </script>
 </head>
 
@@ -64,19 +68,31 @@
                         return (str);
                     }
                     Object.keys(json).forEach(function (k) {
-                        document.write('<li><h1><strong>' + json[k].name + '</strong></h1></li>');
-                        document.write('<li><h1><strong>' + getday(json[k].day) + '</strong></h1></li>');
-                        document.write('<li><h1><strong> 시작 : ' + json[k].start_t + " ↔ 마감 : " + json[k].end_t + '</strong></h1></li>');
-                        document.write('<li><h1><strong>' + json[k].car + ' 인승</strong></h1></li>');
-                        document.write('<li><h1><strong>￦ ' + json[k].price + '</strong></h1></li>');
-                        document.write('<li><br><br><br></li>');
-                        document.write('<a href="#choose" class="ui-btn ui-corner-all">기사 선택</a>');
-                    });
+                        if (json[k].driver == 0) {
+                            document.write('<li><h1><strong>' + json[k].name + '</strong></h1></li>');
+                            document.write('<li><h1><strong>' + getday(json[k].day) + '</strong></h1></li>');
+                            document.write('<li><h1><strong> 시작 : ' + json[k].start_t + " ↔ 마감 : " + json[k].end_t + '</strong></h1></li>');
+                            document.write('<li><h1><strong>' + json[k].car + ' 인승</strong></h1></li>');
+                            document.write('<li><h1><strong>￦ ' + json[k].price + '</strong></h1></li>');
+                            document.write('<li><br><br><br></li>');
+                            document.write('<a href="#driver" class="ui-btn ui-corner-all">기사 선택</a>');
+                        } else {
+                            document.write('<li><h1><strong>' + json[k].name + '</strong></h1></li>');
+                            document.write('<li><h1><strong>' + getday(json[k].day) + '</strong></h1></li>');
+                            document.write('<li><h1><strong> 시작 : ' + json[k].start_t + " ↔ 마감 : " + json[k].end_t + '</strong></h1></li>');
+                            document.write('<li><h1><strong>' + json[k].car + ' 인승</strong></h1></li>');
+                            document.write('<li><h1><strong>￦ ' + json[k].price + '</strong></h1></li>');
+                            document.write('<li><h1><strong>￦ ' + json[k].username + '</strong></h1></li>');
+                            document.write('<li><br><br><br></li>');
+                            document.write('<a href="#driver" class="ui-btn ui-corner-all">기사 바꾸기</a>');
+                        }
+
+                    });                    
                 </script>
             </ul>
         </div>
     </div>
-    <div data-role="page" id="choose">
+    <div data-role="page" id="driver">
         <div data-role="header" data-theme="b">
             <h1>BUSYA</h1>
         </div>
@@ -85,7 +101,7 @@
                 <script>
                     Object.keys(driver).forEach(function (k) {
                         document.write('<li>');
-                        document.write('<a onclick="">');
+                        document.write('<a onclick="change(' + driver[k].num + ')">');
                         document.write('<h2>' + driver[k].name + '</h2>');
                         document.write('<p class="topic"><strong>' + driver[k].tel + '</strong></p>');
                         document.write('<p class="topic"><strong>' + driver[k].car + ' 인승</strong></p>');

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>.....</title>
+    <meta name="viewport" content="width = device-width, initial-scale = 1">
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="js/getparam.js"></script>
+    <script src="js/callkakaoid.js"></script>
+    <script>
+        var disNum = getParameters('disnum');
+        var driverNum = getParameters('drivernum');
+        var driver = $.ajax({
+            type: "POST",
+            async: false,
+            url: "https://busyafunc.azurewebsites.net/api/get/driver",
+            success: function () { },
+            dataType: "json",
+            contentType: "application/json"
+        });
+        driver = JSON.parse(driver.responseJSON);
+
+        function match() {
+            var json = $.ajax({
+                type: "POST",
+                async: false,
+                url: "https://busyafunc.azurewebsites.net/api/set/driver?disnum=" + disNum + "&drivernum=" + driverNum,
+                success: function () { },
+                dataType: "json",
+                contentType: "application/json"
+            });
+            window.location = "./admin_main.html";
+        }
+
+    </script>
+</head>
+
+<body>
+    <div data-role="page" id="main">
+        <div data-role="header" data-theme="b">
+            <h1>BUSYA</h1>
+        </div>
+        <div data-role="content" class="ui-content" style="background: white;">
+            <ul id="list" class="touch" data-role="listview" data-icon="false" data-split-icon="delete">
+                <script>
+                    Object.keys(driver).forEach(function (k) {
+                        if (driverNum == driver[k].num) {
+                            document.write('<li><strong>이름 : ' + driver[k].name + '</strong></li>');
+                            document.write('<li><strong>전화번호 : ' + driver[k].tel + '</strong></li>');
+                            document.write('<li><strong>지역 : ' + driver[k].reg + '</strong></li>');
+                            document.write('<li><strong>' + driver[k].car + ' 인승</strong></li>');
+                            document.write('<li><button onclick="confirm()">전화 걸기</button></li>');
+                            document.write('<li><button onclick="match()">배차 매칭</button></li>');
+                        }
+                    });
+                </script>
+            </ul>
+        </div>
+    </div>
+</body>

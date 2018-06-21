@@ -84,6 +84,23 @@
             $("#date").datepicker();
         });
     </script>
+    <style>
+        ::placeholder {
+            color: white;
+            opacity: 1;
+            /* Firefox */
+        }
+
+        :-ms-input-placeholder {
+            /* Internet Explorer 10-11 */
+            color: white;
+        }
+
+        ::-ms-input-placeholder {
+            /* Microsoft Edge */
+            color: white;
+        }
+    </style>
 </head>
 
 <body>
@@ -95,10 +112,10 @@
             <div class="ui-field-contain">
                 <form method="POST">
                     <label for="start">출발지</label>
-                    <input type="text" name="start" id="start" placeholder="출발지를 입력해주세요." value="">
+                    <input type="text" name="start" id="start" placeholder="출발지를 입력해주세요." value="" style="background-color:palevioletred; color:white;">
                     <br>
                     <label for="dest">목적지</label>
-                    <input type="text" name="dest" id="dest" placeholder="목적지를 입력하세요." value="">
+                    <input type="text" name="dest" id="dest" placeholder="목적지를 입력하세요." value="" style="background-color: navy; color:white;">
                     <br>
                     <br>
                     <label for="car">차량</label>
@@ -110,24 +127,21 @@
                     </select>
                     <br>
                     <label for="date">일시</label>
-                    <input type="text" id="date" name="date" placeholder="날짜를 입력하세요.">
+                    <input type="text" id="date" name="date" placeholder="날짜를 입력하세요." style="background-color: darkblue; color:white;">
                     <br>
                     <label for="starttime">출발시간</label>
-                    <input type="text" id="starttime" name="starttime" placeholder="출발시간을 입력하세요.">
+                    <input type="text" id="starttime" name="starttime" placeholder="출발시간을 입력하세요." style="background-color: steelblue; color:white;">
                     <br>
                     <label for="returntime">복귀시간</label>
-                    <input type="text" id="returntime" name="returntime" placeholder="복귀시간을 입력하세요.">
+                    <input type="text" id="returntime" name="returntime" placeholder="복귀시간을 입력하세요." style="background-color: slategrey; color:white;">
                     <br>
                     <label for="price">보수</label>
-                    <input type="number" id="price" pattern="[0-9]*" name="price" placeholder="보수를 입력하세요. (원 단위)">
+                    <input type="number" id="price" pattern="[0-9]*" name="price" placeholder="보수를 입력하세요. (원 단위)" style="background-color: slateblue; color:white;">
                     <br>
                     <br>
-                    <a href="redirection.html" type="submit" id="submit-short" class="ui-shadow ui-btn ui-corner-all ui-mini ui-btn-b">입력완료</a>
+                    <a href="redirection.html" type="submit" id="submit-short" class="ui-shadow ui-btn ui-corner-all ui-mini ui-btn-b" >입력완료</a>
                 </form>
             </div>
         </div>
     </div>
 </body>
-
-<!-- <script src="https://code.jquery.com/jquery.min.js"></script>
-<script src="js/mdtimepicker.js"></script> -->
